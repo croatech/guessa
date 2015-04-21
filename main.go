@@ -31,14 +31,14 @@ func sayhelloName(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("key", k)
 		fmt.Println("val:", strings.Join(v, ""))
 	}
-	t,_ := template.ParseFiles("views/home.gtpl")
+	t,_ := template.ParseFiles("views/home.html")
 	t.Execute(w, nil)
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("method:", r.Method) // get request method
 	if r.Method == "GET" {
-		t,_ := template.ParseFiles("views/login.gtpl")
+		t,_ := template.ParseFiles("views/login.html")
 		t.Execute(w, nil)
 	} else {
 		r.ParseForm()
