@@ -14,7 +14,7 @@ func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 }
 
 func Hello(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-    fmt.Fprintf(w, "hello, %s!\n", ps.ByName("name"))
+    fmt.Fprintf(w, "Hello, %s!\n", ps.ByName("name"))
 }
 
 func Login(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
