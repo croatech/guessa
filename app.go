@@ -5,7 +5,6 @@ import (
 	"database/sql"
 	"fmt"
 	"github.com/frylock13/phoenix/app/models"
-	"github.com/frylock13/phoenix/config"
 	"github.com/jinzhu/gorm"
 	"github.com/julienschmidt/httprouter"
 	_ "github.com/lib/pq"
