@@ -32,7 +32,6 @@ func Login(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 }
 
 func main() {
-<<<<<<< HEAD
 	db, err := sql.Open("postgres", "user=pqgotest dbname=pqgotest sslmode=verify-full")
 	if err != nil {
 		log.Fatal(err)
@@ -49,14 +48,4 @@ func main() {
 
 	log.Fatal(http.ListenAndServe(":3001", router))
 	log.Println("Listening...")
-=======
-	router := httprouter.New()
-	router.GET("/", Index)
-	router.GET("/hello/:name", Hello)
-	router.GET("/login", Login)
-	router.POST("/login", Login)
-
-	log.Fatal(http.ListenAndServe(":3001", router))
-	log.Println("Listening...")
->>>>>>> 7f29521e08b1f80af3618f8b24c94a06d96cf422
 }
