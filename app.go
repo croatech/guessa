@@ -1,7 +1,6 @@
 package main
 
 import (
-	"config"
 	"database/sql"
 	"fmt"
 	"github.com/frylock13/phoenix/app/models"
