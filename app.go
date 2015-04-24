@@ -1,8 +1,12 @@
 package main
 
 import (
+	"config"
 	"database/sql"
 	"fmt"
+	"github.com/frylock13/phoenix/app/config"
+	"github.com/frylock13/phoenix/app/models"
+	"github.com/jinzhu/gorm"
 	"github.com/julienschmidt/httprouter"
 	_ "github.com/lib/pq"
 	"html/template"
@@ -11,7 +15,7 @@ import (
 )
 
 func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	t, _ := template.ParseFiles("views/index.html")
+	t, _ := template.ParseFiles("app/views/index.html")
 	t.Execute(w, nil)
 }
 
@@ -22,7 +26,7 @@ func Hello(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 func Login(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	fmt.Println("method:", r.Method) // get request method
 	if r.Method == "GET" {
-		t, _ := template.ParseFiles("views/login.html")
+		t, _ := template.ParseFiles("app/views/login.html")
 		t.Execute(w, nil)
 	} else {
 		r.ParseForm()
@@ -32,7 +36,7 @@ func Login(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 }
 
 func main() {
-	db, err := sql.Open("postgres", "user=pqgotest dbname=pqgotest sslmode=verify-full")
+	db, err := sql.Open("postgres", "host=localhost user=flamingo dbname=flamingo password=flamingo sslmode=verify-full")
 	if err != nil {
 		log.Fatal(err)
 	}
