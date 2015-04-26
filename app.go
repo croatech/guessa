@@ -1,20 +1,28 @@
 package main
 
 import (
-	"database/sql"
+	"./models"
 	"fmt"
-	"github.com/frylock13/phoenix/app/models"
 	"github.com/jinzhu/gorm"
 	"github.com/julienschmidt/httprouter"
 	_ "github.com/lib/pq"
 	"html/template"
 	"log"
 	"net/http"
-	"time"
 )
 
 func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	t, _ := template.ParseFiles("app/views/index.html")
+	t, _ := template.ParseFiles("templates/index.html")
+	t.Execute(w, nil)
+}
+
+func ActorsIndex(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	t, _ := template.ParseFiles("templates/actors/index.html")
+	t.Execute(w, nil)
+}
+
+func MoviesIndex(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	t, _ := template.ParseFiles("templates/movies/index.html")
 	t.Execute(w, nil)
 }
 
@@ -25,7 +33,7 @@ func Hello(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 func Login(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	fmt.Println("method:", r.Method) // get request method
 	if r.Method == "GET" {
-		t, _ := template.ParseFiles("app/views/login.html")
+		t, _ := template.ParseFiles("templates/login.html")
 		t.Execute(w, nil)
 	} else {
 		r.ParseForm()
@@ -35,16 +43,19 @@ func Login(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 }
 
 func main() {
-	db, err := sql.Open("postgres", "host=localhost user=flamingo dbname=flamingo password=flamingo sslmode=verify-full")
+	db, err := gorm.Open("postgres", "host=localhost user=flamingo dbname=flamingo password=flamingo sslmode=disable")
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	age := 21
-	rows, err := db.Query("SELECT name FROM users WHERE age = $1", age)
+	db.DB()
+	db.AutoMigrate(&models.User{})
+	user := models.User{Name: "Jinzhu"}
+	db.Create(&user)
 
 	router := httprouter.New()
 	router.GET("/", Index)
+	router.GET("/movies", MoviesIndex)
+	router.GET("/actors", ActorsIndex)
 	router.GET("/hello/:name", Hello)
 	router.GET("/login", Login)
 	router.POST("/login", Login)
