@@ -18,8 +18,9 @@ func main() {
 	}
 	db.DB()
 	db.AutoMigrate(&models.User{})
-	user := models.User{Name: "FRY"}
+	user := models.User{Name: "Fry"}
 	db.Create(&user)
+	fmt.Println("User has been created")
 
 	router := httprouter.New()
 	router.GET("/", controllers.HomeIndex)
