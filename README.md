@@ -13,3 +13,5 @@
 <code>bundle exec rake import:movies</code> # for real-time movies scrapping
 
 <code>bundle exec rake import:stars</code> # for real-time stars scrapping
+
+![](http://i.imgur.com/EoFyS4C.png)
