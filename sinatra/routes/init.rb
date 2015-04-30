@@ -1,5 +1,5 @@
 require_relative "movies"
-require_relative "actors"
+require_relative "stars"
 
 get '/' do
   "Hello World"

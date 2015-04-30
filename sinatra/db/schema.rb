@@ -28,11 +28,4 @@ ActiveRecord::Schema.define(version: 20150429080201) do
     t.string "year"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.datetime "deleted_at"
-    t.string   "name",       limit: 255
-  end
-
 end
