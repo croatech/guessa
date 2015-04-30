@@ -7,7 +7,8 @@ import (
 
 )
 
+var homeTmpl = template.Must(template.New("index").ParseFiles("./templates/layouts/layout.tmpl", "./templates/index.tmpl"))
+
 func HomeIndex(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	t, _ := template.ParseFiles("templates/index.tmpl")
-	t.Execute(w, nil)
+	homeTmpl.ExecuteTemplate(w, "layout", "Home") // Home - title {{.}}
 }

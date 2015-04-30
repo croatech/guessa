@@ -6,7 +6,8 @@ import (
 	"net/http"
 )
 
+var moviesTmpl = template.Must(template.New("index").ParseFiles("./templates/layouts/layout.tmpl", "./templates/movies/index.tmpl"))
+
 func MoviesIndex(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	t, _ := template.ParseFiles("templates/movies/index.tmpl")
-	t.Execute(w, nil)
+	moviesTmpl.ExecuteTemplate(w, "layout", "Movies") // Movies - title {{.}}
 }
