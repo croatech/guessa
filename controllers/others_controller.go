@@ -14,7 +14,7 @@ func Hello(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 func Login(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	fmt.Println("method:", r.Method) // get request method
 	if r.Method == "GET" {
-		t, _ := template.ParseFiles("templates/login.html")
+		t, _ := template.ParseFiles("templates/login.tmpl")
 		t.Execute(w, nil)
 	} else {
 		r.ParseForm()

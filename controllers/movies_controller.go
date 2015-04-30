@@ -7,6 +7,6 @@ import (
 )
 
 func MoviesIndex(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	t, _ := template.ParseFiles("templates/movies/index.html")
+	t, _ := template.ParseFiles("templates/movies/index.tmpl")
 	t.Execute(w, nil)
 }

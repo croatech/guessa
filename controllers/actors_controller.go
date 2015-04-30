@@ -7,6 +7,6 @@ import (
 )
 
 func ActorsIndex(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	t, _ := template.ParseFiles("templates/actors/index.html")
+	t, _ := template.ParseFiles("templates/actors/index.tmpl")
 	t.Execute(w, nil)
 }
