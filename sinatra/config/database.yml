@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  port: 5432
+  username: flamingo
+  password: flamingo
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: flamingo_development
+
+test:
+  <<: *default
+  database: flamingo_test
+
+production:
+  <<: *default
+  database: flamingo
