@@ -1,4 +1,9 @@
+%h1 test
+
 .guess-movie-block
-  %h1 test
-  .image
-    = @movie.image
+
+  .image= image_tag(@movie.image, @movie.title)
+  
+  %ul.options
+    - @options.each do |option|
+      %li= option.title

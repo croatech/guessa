@@ -1,7 +1,8 @@
-gem "sinatra"
-gem "sinatra-activerecord"
-gem "pg"
-gem "rake"
-gem "colorize"
-gem "mechanize"
-gem "haml"
+gem 'sinatra'
+gem 'sinatra-activerecord'
+gem 'pg'
+gem 'rake'
+gem 'colorize'
+gem 'mechanize'
+gem 'haml'
+gem 'sinatra-asset-pipeline'
