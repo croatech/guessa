@@ -1,3 +1,4 @@
 get '/movies' do
-  "Movies"
+  @title = "Movies"
+  haml :movies, layout: :layout
 end

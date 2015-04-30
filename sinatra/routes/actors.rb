@@ -1,3 +1,4 @@
 get '/actors' do
-  "Actors"
+  @title = "Actors"
+  haml :actors, layout: :layout
 end

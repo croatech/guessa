@@ -2,5 +2,6 @@ gem "sinatra"
 gem "sinatra-activerecord"
 gem "pg"
 gem "rake"
-gem 'colorize'
-gem 'mechanize'
+gem "colorize"
+gem "mechanize"
+gem "haml"
