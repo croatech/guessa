@@ -7,3 +7,5 @@ gem 'mechanize'
 gem 'haml'
 gem 'rack-flash3'
 gem 'sinatra-redirect-with-flash'
+gem 'rspec'
+gem 'rack-test', require: "rack/test"
