@@ -3,6 +3,7 @@ require_relative "../models/init"
 
 namespace '/movies' do
   @title = "Movies"
+  @r_count = 0
 
   get '' do
     @movie = Movie.order("RANDOM()").first()
@@ -11,7 +12,6 @@ namespace '/movies' do
     haml :movies, layout: :layout
   end
 
-  get '/check/:id' do
-    "Hello World#{params[:id]}"
+  post '' do
   end
 end

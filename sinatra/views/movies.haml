@@ -1,9 +1,16 @@
-%h1 test
+%h1 Movie
 
 .guess-movie-block
-
   .image= image_tag(@movie.image, @movie.title)
   
-  %ul.options
-    - @options.each do |option|
-      %li= link_to(option.title, "movies/check/#{option.id}")
+  %p= "Правильных ответов #{@r_count}"
+
+  .options
+    %form{:action => "/movies", :method => "post"}
+      %ul
+        - @options.each do |option|
+          %li
+            %input{:name => "answer_id", :type => "checkbox", :value => "#{option.id}"}>/
+            = option.title
+      %input{:name => "id", :checked => "checked", :style => "display:none", :type => "checkbox", :value => "#{@movie.id}"}>/
+      %input{:type => "submit", :value => "Send", :class => "button"}
