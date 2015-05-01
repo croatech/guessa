@@ -43,6 +43,8 @@ GEM
     ntlm-http (0.1.1)
     pg (0.18.1)
     rack (1.6.0)
+    rack-flash3 (1.0.5)
+      rack
     rack-protection (1.5.3)
       rack
     rake (10.4.2)
@@ -53,6 +55,8 @@ GEM
     sinatra-activerecord (2.0.6)
       activerecord (>= 3.2)
       sinatra (~> 1.0)
+    sinatra-redirect-with-flash (0.2.1)
+      sinatra (>= 1.0.0)
     thread_safe (0.3.5)
     tilt (1.4.1)
     tzinfo (1.2.2)
@@ -70,6 +74,8 @@ DEPENDENCIES
   haml
   mechanize
   pg
+  rack-flash3
   rake
   sinatra
   sinatra-activerecord
+  sinatra-redirect-with-flash

@@ -1,10 +1,17 @@
 require "sinatra/activerecord"
 require_relative "../models/init"
 
-get '/movies' do
+namespace '/movies' do
   @title = "Movies"
-  @movie = Movie.order("RANDOM()").first()
-  @options = Movie.order("RANDOM()").first(3).to_a << @movie 
 
-  haml :movies, layout: :layout
+  get '/' do
+    @movie = Movie.order("RANDOM()").first()
+    @options = Movie.where.not(id: @movie.id).order("RANDOM()").first(3).to_a << @movie
+
+    haml :movies, layout: :layout
+  end
+
+  get '/movies/check/:id' do
+    "Hello World#{params[:id]}"
+  end
 end

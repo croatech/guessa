@@ -6,4 +6,4 @@
   
   %ul.options
     - @options.each do |option|
-      %li= option.title
+      %li= link_to(option.title, "movies/check/#{option.id}")
