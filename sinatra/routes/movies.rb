@@ -3,7 +3,7 @@ require_relative "../models/init"
 
 namespace '/movies' do
   @title = "Movies"
-  @r_count = 0
+  @@r_count = 0
 
   get '' do
     @movie = Movie.order("RANDOM()").first()
@@ -13,5 +13,11 @@ namespace '/movies' do
   end
 
   post '' do
+    if params[:id] == params[:answer_id]
+      @@r_count = @@r_count.to_i + 1
+      redirect "/movies"
+    else
+      false
+    end
   end
 end

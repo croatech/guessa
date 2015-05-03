@@ -6,6 +6,6 @@ gem 'colorize'
 gem 'mechanize'
 gem 'haml'
 gem 'rack-flash3'
-gem 'sinatra-redirect-with-flash'
+gem 'sinatra-flash'
 gem 'rspec'
 gem 'rack-test', require: "rack/test"

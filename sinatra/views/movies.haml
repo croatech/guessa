@@ -3,10 +3,10 @@
 .guess-movie-block
   .image= image_tag(@movie.image, @movie.title)
   
-  %p= "Правильных ответов #{@r_count}"
+  %p= "Правильных ответов #{@@r_count}"
 
   .options
-    %form{:action => "/movies", :method => "post"}
+    %form{:action => "", :method => "post"}
       %ul
         - @options.each do |option|
           %li
