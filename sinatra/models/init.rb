@@ -1,4 +1,3 @@
-require_relative "user"
 require_relative "game"
 require_relative "movie"
 require_relative "star"

@@ -1,8 +1,9 @@
 class CreateGames < ActiveRecord::Migration
   def change
     create_table :games do |t|
-      t.integer :user_id
-      t.integer :score
+      t.string :user_name
+      t.integer :score, default: 0
+      t.integer :time
     end
   end
 end
