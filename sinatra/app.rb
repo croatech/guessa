@@ -19,11 +19,6 @@ class GuessApp < Sinatra::Base
   configure :development do
     # ...
   end
-
-  helpers do
-    include Rack::Utils
-    alias_method :h, :escape_html
-  end
 end
 
 require_relative 'routes/init'
