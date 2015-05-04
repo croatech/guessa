@@ -3,33 +3,45 @@ class GuessApp < Sinatra::Base
     @title = "Movies"
 
     get '' do
-      if session['user_name']
-        haml :'movies/index', layout: :layout
-      else
-        redirect '/'
-        flash[:warning] = "What is your name?"
+      if !session['user_name']
+        redirect "/"
       end
-    end
 
-    post '' do
-      if params[:id] == params[:answer_id]
-        redirect '/movies'
-      else
-        false
-      end
+      haml :'movies/index', layout: :layout
     end
 
     get '/game' do
-      if session['game'] != "started" # if the game hasn't started
-        game = Game.create!(user_name: session['user_name'])
-        session['game'] == "started" # the game has started
+      if !session['user_name']
+        redirect "/"
       end
 
-      @movie = Movie.order("RANDOM()").first()
+      if session['game'] != "started" # if the game hasn't started
+        game = Game.create!(user_name: session['user_name'])
+        session['game'] = "started" # the game has started
+        session['game_id'] = game.id
+      end
+
+      @game = Game.find(session['game_id']) # current game
+      @movie = Movie.order("RANDOM()").first() 
       @options = Movie.where.not(id: @movie.id).order("RANDOM()").first(3).to_a << @movie
-      flash[:blah] = "You were feeling blah at #{Time.now}."
 
       haml :'movies/game', layout: :layout
+    end
+
+    post '/game' do
+      if !session['user_name']
+        redirect "/"
+      end
+
+      @game = Game.find(session['game_id'])
+
+      if params[:id] == params[:answer_id]
+        @game.right_answer
+        redirect '/movies/game'
+        flash[:success] = "Правильный ответ!"
+      else
+        flash[:error] = "Неправильный ответ!"
+      end
     end
   end
 end

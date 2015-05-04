@@ -1,12 +1,12 @@
 %h1 Movie
-
-= "Вы ответили правильно на #{flash[:r_count]} вопросов"
+= flash[:success]
+= "Вы ответили правильно на #{@game.score} вопросов"
 
 .guess-movie-block
   .image= image_tag(@movie.image, @movie.title)
 
   .options
-    %form{:action => "", :method => "post"}
+    %form{:action => "/movies/game", :method => "post"}
       %ul
         - @options.each do |option|
           %li
