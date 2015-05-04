@@ -5,6 +5,7 @@ class GuessApp < Sinatra::Base
     get '' do
       @movie = Movie.order("RANDOM()").first()
       @options = Movie.where.not(id: @movie.id).order("RANDOM()").first(3).to_a << @movie
+      flash[:blah] = "You were feeling blah at #{Time.now}."
 
       haml :movies, layout: :layout
     end

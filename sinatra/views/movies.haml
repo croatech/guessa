@@ -1,5 +1,7 @@
 %h1 Movie
 
+= "Вы ответили правильно на #{flash[:r_count]} вопросов"
+
 .guess-movie-block
   .image= image_tag(@movie.image, @movie.title)
 

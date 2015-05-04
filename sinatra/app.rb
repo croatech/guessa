@@ -1,14 +1,16 @@
 require 'sinatra'
 require "sinatra/activerecord"
 require "sinatra/namespace"
+require 'sinatra/flash'
 require 'haml'
 
 class GuessApp < Sinatra::Base
-  register Sinatra::Namespace
-  register Sinatra::ActiveRecordExtension
-
   enable :sessions
 
+  register Sinatra::Flash
+  register Sinatra::Namespace
+  register Sinatra::ActiveRecordExtension
+  
   configure :production do
     set :haml, { :ugly=>true }
     set :clean_trace, true
