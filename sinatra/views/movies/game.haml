@@ -1,7 +1,7 @@
 %h1 Game
 = flash[:success]
 = flash[:error]
-.correct-answers= "Вы ответили правильно на #{@game.score} вопросов"
+.correct-answers= "Count of right answers: #{@game.score}"
 
 - if session[:game] == 'started'
   .guess-movie-block
@@ -19,7 +19,7 @@
           %input{:type => "submit", :value => "Send", :class => "button"}
 
 - if session[:game] != 'started'
-  = "Ваш счет: #{@game.score}"
+  = "Your score: #{@game.score}"
   %br/
   = link_to 'New game', 'game/next_one'
   %br/

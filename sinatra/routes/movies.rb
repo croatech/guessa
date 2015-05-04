@@ -38,11 +38,11 @@ class GuessApp < Sinatra::Base
       if params[:id] == params[:answer_id]
         @game.right_answer # increment score
         redirect '/movies/game'
-        flash[:success] = 'Правильный ответ!'
+        flash[:success] = 'Right answer!'
       else
         session['game'] = 'finished' # the game has been finished
         redirect '/movies/game'
-        flash[:error] = 'Неправильный ответ!'
+        flash[:error] = 'Wrong answer!'
       end
     end
 
