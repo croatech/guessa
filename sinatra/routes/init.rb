@@ -19,7 +19,7 @@ class GuessApp < Sinatra::Base
       redirect "/choose"
     else
       redirect "/"
-      flash[:warning] = "Введите имя."
+      flash[:warning] = "Enter your name."
     end
   end
 
