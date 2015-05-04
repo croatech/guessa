@@ -1,5 +1,9 @@
 .choose-list
-  %h1 Choose a game:
+  = flash[:success]
+  = flash[:warning]
+
+  %h1= "Hello, #{session[:user_name]}"
+  %h2 Choose a game:
   %ul
     %li
       = link_to "Movies", "/movies"
