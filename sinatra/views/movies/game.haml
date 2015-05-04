@@ -1,16 +1,26 @@
-%h1 Movie
+%h1 Game
 = flash[:success]
-= "Вы ответили правильно на #{@game.score} вопросов"
+= flash[:error]
+.correct-answers= "Вы ответили правильно на #{@game.score} вопросов"
 
-.guess-movie-block
-  .image= image_tag(@movie.image, @movie.title)
+- if session[:game] == 'started'
+  .guess-movie-block
+    .image= image_tag(@movie.image, @movie.title)
 
-  .options
-    %form{:action => "/movies/game", :method => "post"}
-      %ul
-        - @options.each do |option|
-          %li
-            %input{:name => "answer_id", :type => "checkbox", :value => "#{option.id}"}>/
-            = option.title
-      %input{:name => "id", :checked => "checked", :style => "display:none", :type => "checkbox", :value => "#{@movie.id}"}>/
-      %input{:type => "submit", :value => "Send", :class => "button"}
+    - if session['game'] == 'started'
+      .movies
+        %form{:action => '/movies/game', :method => 'post'}
+          %ul
+            - @movies.each do |movie|
+              %li
+                %input{:name => "answer_id", :type => "checkbox", :value => "#{movie.id}"}>/
+                = movie.title
+          %input{:name => "id", :checked => "checked", :style => "display:none", :type => "checkbox", :value => "#{@movie.id}"}>/
+          %input{:type => "submit", :value => "Send", :class => "button"}
+
+- if session[:game] != 'started'
+  = "Ваш счет: #{@game.score}"
+  %br/
+  = link_to 'New game', 'game/next_one'
+  %br/
+  = link_to 'Rating', '/movies'
