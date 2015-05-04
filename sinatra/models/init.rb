@@ -1,4 +1,3 @@
-require "sinatra/activerecord"
 require_relative "movie"
 require_relative "star"
 

@@ -2,8 +2,6 @@
 
 .guess-movie-block
   .image= image_tag(@movie.image, @movie.title)
-  
-  %p= "Правильных ответов #{@@r_count}"
 
   .options
     %form{:action => "", :method => "post"}
