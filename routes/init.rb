@@ -25,6 +25,7 @@ class GuessApp < Sinatra::Base
 
   get '/choose' do
     if session['user_name']
+      @games = Game.order(score: :desc).limit(10)
       haml :choose, layout: :layout
     else
       redirect "/"
