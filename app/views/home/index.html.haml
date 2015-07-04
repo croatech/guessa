@@ -1,0 +1,5 @@
+.row.home
+  = form_tag(login_path) do
+    .field.center
+      = text_field_tag :name, nil, { placeholder: "Name", required: true }
+      = submit_tag :enter

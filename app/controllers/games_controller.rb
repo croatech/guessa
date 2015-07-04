@@ -61,6 +61,12 @@ class GamesController < ApplicationController
     end
   end
 
+  def start
+    if !session[:session_key]
+      redirect_to root_path
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_game
