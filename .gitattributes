@@ -1,2 +1,2 @@
 *.css linguist-language=ruby
-*.js linguist-language=ruby
+*.javascript linguist-language=ruby
