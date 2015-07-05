@@ -13,6 +13,8 @@ gem "haml-rails", "~> 0.9"
 gem 'responders', '~> 2.0'
 gem 'paperclip'
 gem 'rails_admin'
+gem 'angularjs-rails'
+gem 'lodash-rails'
 
 group :development, :test do
   gem 'byebug'

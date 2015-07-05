@@ -36,6 +36,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    angularjs-rails (1.4.0)
     arel (6.0.0)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -105,6 +106,8 @@ GEM
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    lodash-rails (3.9.3)
+      railties (>= 3.1)
     loofah (2.0.2)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -233,6 +236,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  angularjs-rails
   better_errors
   byebug
   capybara
@@ -241,6 +245,7 @@ DEPENDENCIES
   haml-rails (~> 0.9)
   jbuilder (~> 2.0)
   jquery-rails
+  lodash-rails
   paperclip
   pg
   rails (= 4.2.3)

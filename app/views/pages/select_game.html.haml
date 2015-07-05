@@ -1,1 +1,7 @@
-%h1 Select your game.
+.row
+  %h1 Select your game.
+
+  .twelve-columns{"ng-controller" => "GameCtrl"}
+    .movies
+      .movie{"ng-repeat" => "movie in movies"}
+        {{movie.title}}
