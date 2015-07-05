@@ -19,9 +19,19 @@
   }
 }
 
-.select-game {
-  .button {
-    max-width: 250px;
-    margin-top: 50px;
+.game {
+  .start-block {
+    .button {
+      max-width: 250px;
+      margin-top: 50px;
+    }
+  }
+
+  .movies {
+    .movie {
+      img {
+        max-width: 500px;
+      }
+    }
   }
 }

@@ -1,6 +1,12 @@
-.row.select-game{{"ng-controller" => "GameCtrl"}}
+.row.game{{"ng-controller" => "GameCtrl"}}
 
+  .start-block{{"ng-if" => "gameStatus == 'ready'"}}
+    %h1.text-center= "Hello, #{@current_user.name}. Are you ready?"
+    
+    = link_to "Start", "#", { class: "button center", "ng-click" => "startGame(#{@current_user.id})" }
 
-  %h1.text-center= "Hello, #{@current_user.name}. Are you ready?"
-  
-  = link_to "Start", "#", { class: "button center", "ng-click" => "startMoviesGame(@current_user.id)" }
+  .game-block{{"ng-if" => "gameStatus == 'processing'"}}
+    .movies
+      .movie{{"ng-repeat" => "movie in movies"}}
+        %h1 {{movie.title}}
+        %image{ src: "{{movie.image}}" }

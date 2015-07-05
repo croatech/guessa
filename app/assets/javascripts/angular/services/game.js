@@ -1,7 +1,10 @@
-app.factory('Movies', function(Restangular) {
+app.factory('Games', function(Restangular) {
 
   return {
-    all: function() {
+    allGames: function() {
+      return Restangular.all('games').getList().$object;
+    },
+    allMovies: function() {
       return Restangular.all('movies').getList().$object;
     }
   };
