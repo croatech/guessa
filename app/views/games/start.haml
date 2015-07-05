@@ -1,4 +1,6 @@
-.row.select-game{{ "ng-controller" => "GameCtrl"}}
+.row.select-game{{"ng-controller" => "GameCtrl"}}
+
+
   %h1.text-center= "Hello, #{@current_user.name}. Are you ready?"
   
   = link_to "Start", "#", { class: "button center", "ng-click" => "startMoviesGame(@current_user.id)" }

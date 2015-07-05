@@ -52,13 +52,6 @@ RSpec.describe GamesController, type: :controller do
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new game as @game" do
-      get :new, {}, valid_session
-      expect(assigns(:game)).to be_a_new(Game)
-    end
-  end
-
   describe "GET #edit" do
     it "assigns the requested game as @game" do
       game = Game.create! valid_attributes

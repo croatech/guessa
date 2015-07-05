@@ -52,13 +52,6 @@ RSpec.describe MoviesController, type: :controller do
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new movie as @movie" do
-      get :new, {}, valid_session
-      expect(assigns(:movie)).to be_a_new(Movie)
-    end
-  end
-
   describe "GET #edit" do
     it "assigns the requested movie as @movie" do
       movie = Movie.create! valid_attributes
