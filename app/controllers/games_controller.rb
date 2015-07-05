@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
+  respond_to :json
 
   # GET /games
   # GET /games.json
@@ -58,12 +59,6 @@ class GamesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to games_url, notice: 'Game was successfully destroyed.' }
       format.json { head :no_content }
-    end
-  end
-
-  def start
-    if !session[:session_key]
-      redirect_to root_path
     end
   end
 
