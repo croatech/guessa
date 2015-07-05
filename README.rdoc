@@ -1,3 +1,4 @@
 == README
 
-Testing polygon for various frameworks, now on Rails.
+Testing polygon for various frameworks, now on Rails+Angular.
+
