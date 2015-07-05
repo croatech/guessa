@@ -11,3 +11,4 @@
 /log/development.log
 !/log/.keep
 /tmp/*
+/system/*
