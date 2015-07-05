@@ -3,11 +3,9 @@ Rails.application.routes.draw do
   
   root 'home#index'
 
-  get 'select_game' => 'pages#select_game'
-
   post 'login' => 'home#login'
 
-  resources :games, except: [:edit, :update, :destroy], defaults: { format: :json } do
+  resources :games, except: [:edit, :update, :destroy] do
     get 'start', on: :collection
   end
 

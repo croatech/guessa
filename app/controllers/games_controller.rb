@@ -25,6 +25,14 @@ class GamesController < ApplicationController
     end
   end
 
+  def start
+    if !session[:session_key]
+      redirect_to root_path
+    else
+      @current_user = User.find_by_session_key(session[:session_key])
+    end
+  end
+
   private
 
     def game_params

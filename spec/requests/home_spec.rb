@@ -10,10 +10,10 @@ RSpec.describe "root", type: :request do
       expect(page).to have_selector("input[type=submit][value='enter']")
     end
 
-    it "checks redirect to select game page after filled up the form" do
+    it "checks redirect to start game page after filled up the form" do
       fill_in "name", with: "Fry"
       click_button "enter"
-      expect(page.current_path).to eq select_game_path
+      expect(page.current_path).to eq start_games_path
     end
   end
 end

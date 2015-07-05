@@ -1,13 +1,27 @@
+.container {
+  padding-top: 10%;
+}
+
 .center {
   display: block;
   margin: 0 auto;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .home {
   form {
     .field {
       max-width: 325px;
-      margin-top: 30%;
     }
+  }
+}
+
+.select-game {
+  .button {
+    max-width: 250px;
+    margin-top: 50px;
   }
 }
