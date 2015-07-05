@@ -11,6 +11,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem "haml-rails", "~> 0.9"
 gem 'responders', '~> 2.0'
+gem 'paperclip'
+gem 'rails_admin'
 
 group :development, :test do
   gem 'byebug'
