@@ -5,11 +5,15 @@
     
     = link_to "Start", "#", { class: "button center", "ng-click" => "startGame(#{@current_user.id})" }
 
-  .game-block{{"ng-if" => "gameStatus == 'processing'"}}
+  .game-block{{"ng-if" => "gameStatus != 'ready'"}}
     .movies{{"ng-init" => "getMovies()"}}
       .row.movie
         .seven.columns
           %img.center{:src => "{{secret.image}}"}/
+
+          %p.right-answer.text-center{{"ng-if" => "gameStatus == 'finished'"}}
+            {{secretMovieTitle}}
+
           %h2.text-center You score: {{score}}
 
         .five.columns.options

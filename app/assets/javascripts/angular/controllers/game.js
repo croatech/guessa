@@ -22,7 +22,7 @@ app.controller('GameCtrl', function($scope, Restangular, Games) {
   };
 
   $scope.checkAnswer = function(answerId, $index) {
-    if ($scope.secret.id == answerId) {
+    if ($scope.secret.id == answerId && $scope.gameStatus != "finished") {
       $scope.score += 1
       $scope.rightAnswer = $index // set css style for right answer
       $scope.getMovies()
@@ -32,7 +32,9 @@ app.controller('GameCtrl', function($scope, Restangular, Games) {
       $scope.current_game.score = $scope.score
       $scope.current_game.put()
     } else {
+      $scope.gameStatus = "finished"
       $scope.wrongAnswer = $index // set css style for wrong answer
+      $scope.secretMovieTitle = $scope.secret.title;
       removeBorder()
     };
   };

@@ -37,6 +37,12 @@
   }
 
   .movies {
+    .right-answer {
+      color: #00d713;
+      font-size: 3rem;
+      margin-bottom: 0;
+    }
+
     .movie {
       img {
         max-width: 500px;
