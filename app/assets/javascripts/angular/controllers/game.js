@@ -1,10 +1,37 @@
-app.controller('GameCtrl', ['$scope', 'Games', function($scope, Games) {
-  $scope.gameStatus = "ready"; // init
+app.controller('GameCtrl', function($scope, Restangular, Games) {
 
-  $scope.movies = Games.allMovies();
+  // init
+  $scope.gameStatus = "ready";
+  $scope.score = 0;
 
-  $scope.startGame = function(user_id) {
+  $scope.startGame = function(userId) {
+    Games.create(userId);
+
+    Restangular.one('users', userId).all('games').getList().then(function(current_game) {
+      $scope.current_game = current_game[2];
+    });
+
     $scope.gameStatus = "processing";
-    $scope.id = user_id;
   };
-}]);
+
+  $scope.getMovies = function() {
+    Restangular.all('movies').getList().then(function(movies) {
+      $scope.secret = movies[0];
+      $scope.movies = movies;
+    });
+  };
+
+  $scope.checkAnswer = function(answerId) {
+    if ($scope.secret.id == answerId) {
+      $scope.score += 1;
+      $scope.answerStatus = "RIGHT";
+      $scope.getMovies();
+
+      $scope.current_game.score = $scope.score;
+      $scope.current_game.put();
+    } else {
+      $scope.answerStatus = "FAIL";
+    };
+  };
+
+});

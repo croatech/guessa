@@ -1,11 +1,17 @@
 app.factory('Games', function(Restangular) {
 
   return {
-    allGames: function() {
-      return Restangular.all('games').getList().$object;
+    create: function(userId) {
+      return Restangular.all('games').post({user_id: userId});
     },
-    allMovies: function() {
-      return Restangular.all('movies').getList().$object;
+    getMovies: function() {
+      return Restangular.all('movies').getList().$object;  // GET: /users
+    },
+    incrementScore: function(gameId, score) {
+      currentGame = Restangular.one('games', gameId).get()
+      currentGame.score = 2;
+      currentGame.put();
     }
   };
+
 });

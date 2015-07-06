@@ -6,7 +6,13 @@
     = link_to "Start", "#", { class: "button center", "ng-click" => "startGame(#{@current_user.id})" }
 
   .game-block{{"ng-if" => "gameStatus == 'processing'"}}
-    .movies
-      .movie{{"ng-repeat" => "movie in movies"}}
-        %h1 {{movie.title}}
-        %image{ src: "{{movie.image}}" }
+    .movies{{"ng-init" => "getMovies()"}}
+      .row.movie
+        .nine.columns
+          %img.center{:src => "{{secret.image}}"}/
+          %h2.text-center You score: {{score}} {{answerStatus}}
+
+        .three.columns
+          %ul{{"ng-repeat" => "movie in movies"}}
+            %li{{"ng-click" => "checkAnswer(movie.id)"}}
+              {{movie.title}}
