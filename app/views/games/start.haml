@@ -1,4 +1,4 @@
-.row.game{{"ng-controller" => "GameCtrl"}}
+.row.game.container{{"ng-controller" => "GameCtrl"}}
 
   .start-block{{"ng-if" => "gameStatus == 'ready'"}}
     %h1.text-center= "Hello, #{@current_user.name}. Are you ready?"
@@ -9,27 +9,27 @@
   .row.game-block{{"ng-if" => "gameStatus != 'ready'"}}
     .movies{{"ng-init" => "getMovies()"}}
       .row.movie
-        .seven.columns.block
+        .col-md-7.block
           %img.center{:src => "{{secret.image}}"}/
           %p.right-answer.text-center{{"ng-if" => "gameStatus == 'finished'"}}
             {{secretMovieTitle}}
-          %h2.text-center You score: {{score}}
+          %h2.text-center Your score: {{score}}
 
-          .finished-actions.center
+          .finished-actions.center{{"ng-if" => "gameStatus == 'finished'"}}
             %a{:href => "/", class: "button"} 
               New Game
 
             %a{:href => "", class: "button", "ng-click" => "showRating()"} 
               Rating
 
-        .five.columns.options{{"ng-hide" => "ratingShows"}}
+        .col-md-5.options{{"ng-hide" => "ratingShows"}}
           %ul.center{{"ng-repeat" => "movie in movies"}}
             %li
               %a#option{:href => "", class: "button center", "ng-class" => "{ 'right': $index == rightAnswer, 'wrong': $index == wrongAnswer }", "ng-click" => "checkAnswer(movie.id, $index)"}
                 {{movie.title}}
 
-        .fine.columns.rating{{"ng-show" => "ratingShows"}}
-          %table
+        .col-md-5.rating{{"ng-show" => "ratingShows"}}
+          %table.center
             %caption Rating
 
             %tr
@@ -37,5 +37,5 @@
               %th Score
 
             %tr{{"ng-repeat" => "game in games"}}
-              %td {{game.name}}
+              %td {{game.user.name}}
               %td {{game.score}}

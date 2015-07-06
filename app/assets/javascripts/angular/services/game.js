@@ -6,6 +6,9 @@ app.factory('Games', function(Restangular) {
     },
     getMovies: function() {
       return Restangular.all('movies').getList().$object;  // GET: /users
+    }, 
+    getGames: function() {
+      return Restangular.all('games').getList().$object;
     }
   };
 

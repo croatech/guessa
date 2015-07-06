@@ -2,7 +2,13 @@ class GamesController < ApplicationController
   before_action :set_game, only: [:show, :update]
 
   def index
-    @games = Game.all.includes(:user)
+    @games = Game.all.order(score: :desc).includes(:user).limit(6)
+
+    respond_to do |format|
+      format.json do
+        render :json => @games.to_json(:include => { :user => { :only => :name } })
+      end
+    end
   end
 
   def show

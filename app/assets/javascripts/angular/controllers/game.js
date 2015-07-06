@@ -41,16 +41,7 @@ app.controller('GameCtrl', function($scope, Restangular, Games) {
 
   $scope.showRating = function() {
     $scope.ratingShows = true;
-
-    $scope.games = [
-      {
-        "name":"fuck",
-        score: 2
-      },
-      {
-        "name":"fuck",
-        score: 2
-      }
-    ]
+    $scope.games = Games.getGames();
+    console.log($scope.games)
   };
 });
