@@ -6,15 +6,13 @@
     %a{:href => "", class: "button center", "ng-click" => "startGame(#{@current_user.id})"}
       Start
 
-  .game-block{{"ng-if" => "gameStatus != 'ready'"}}
+  .row.game-block{{"ng-if" => "gameStatus != 'ready'"}}
     .movies{{"ng-init" => "getMovies()"}}
       .row.movie
-        .seven.columns
+        .seven.columns.block
           %img.center{:src => "{{secret.image}}"}/
-
           %p.right-answer.text-center{{"ng-if" => "gameStatus == 'finished'"}}
             {{secretMovieTitle}}
-
           %h2.text-center You score: {{score}}
 
           .finished-actions.center
@@ -24,8 +22,20 @@
             %a{:href => "", class: "button", "ng-click" => "showRating()"} 
               Rating
 
-        .five.columns.options
+        .five.columns.options{{"ng-hide" => "ratingShows"}}
           %ul.center{{"ng-repeat" => "movie in movies"}}
             %li
               %a#option{:href => "", class: "button center", "ng-class" => "{ 'right': $index == rightAnswer, 'wrong': $index == wrongAnswer }", "ng-click" => "checkAnswer(movie.id, $index)"}
                 {{movie.title}}
+
+        .fine.columns.rating{{"ng-show" => "ratingShows"}}
+          %table
+            %caption Rating
+
+            %tr
+              %th Name
+              %th Score
+
+            %tr{{"ng-repeat" => "game in games"}}
+              %td {{game.name}}
+              %td {{game.score}}
