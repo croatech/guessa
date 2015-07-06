@@ -3,7 +3,8 @@
   .start-block{{"ng-if" => "gameStatus == 'ready'"}}
     %h1.text-center= "Hello, #{@current_user.name}. Are you ready?"
     
-    = link_to "Start", "#", { class: "button center", "ng-click" => "startGame(#{@current_user.id})" }
+    %a{:href => "", class: "button center", "ng-click" => "startGame(#{@current_user.id})"}
+      Start
 
   .game-block{{"ng-if" => "gameStatus != 'ready'"}}
     .movies{{"ng-init" => "getMovies()"}}
@@ -15,6 +16,13 @@
             {{secretMovieTitle}}
 
           %h2.text-center You score: {{score}}
+
+          .finished-actions.center
+            %a{:href => "/", class: "button"} 
+              New Game
+
+            %a{:href => "", class: "button", "ng-click" => "showRating()"} 
+              Rating
 
         .five.columns.options
           %ul.center{{"ng-repeat" => "movie in movies"}}

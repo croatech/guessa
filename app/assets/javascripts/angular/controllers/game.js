@@ -2,16 +2,16 @@ app.controller('GameCtrl', function($scope, Restangular, Games) {
 
   // init
   $scope.gameStatus = "ready"
-  $scope.score = 0
 
   $scope.startGame = function(userId) {
+    $scope.score = 0
+    $scope.gameStatus = "processing";
+
     Games.create(userId);
 
     Restangular.one('users', userId).all('games').getList().then(function(current_game) {
       $scope.current_game = current_game.sort().reverse()[0];
     });
-
-    $scope.gameStatus = "processing";
   };
 
   $scope.getMovies = function() {
