@@ -8,7 +8,7 @@ app.controller('GameCtrl', function($scope, Restangular, Games) {
     Games.create(userId);
 
     Restangular.one('users', userId).all('games').getList().then(function(current_game) {
-      $scope.current_game = current_game[2];
+      $scope.current_game = current_game.sort().reverse()[0];
     });
 
     $scope.gameStatus = "processing";
