@@ -1,8 +1,8 @@
 app.controller('GameCtrl', function($scope, Restangular, Games) {
 
   // init
-  $scope.gameStatus = "ready";
-  $scope.score = 0;
+  $scope.gameStatus = "ready"
+  $scope.score = 0
 
   $scope.startGame = function(userId) {
     Games.create(userId);
@@ -16,21 +16,24 @@ app.controller('GameCtrl', function($scope, Restangular, Games) {
 
   $scope.getMovies = function() {
     Restangular.all('movies').getList().then(function(movies) {
-      $scope.secret = movies[0];
-      $scope.movies = movies;
+      $scope.secret = movies[0]
+      $scope.movies = shuffle(movies)
     });
   };
 
-  $scope.checkAnswer = function(answerId) {
+  $scope.checkAnswer = function(answerId, $index) {
     if ($scope.secret.id == answerId) {
-      $scope.score += 1;
-      $scope.answerStatus = "RIGHT";
-      $scope.getMovies();
+      $scope.score += 1
+      $scope.rightAnswer = $index // set css style for right answer
+      $scope.getMovies()
+      removeBorder()
 
-      $scope.current_game.score = $scope.score;
-      $scope.current_game.put();
+      // record update
+      $scope.current_game.score = $scope.score
+      $scope.current_game.put()
     } else {
-      $scope.answerStatus = "FAIL";
+      $scope.wrongAnswer = $index // set css style for wrong answer
+      removeBorder()
     };
   };
 

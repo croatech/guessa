@@ -10,9 +10,10 @@
       .row.movie
         .seven.columns
           %img.center{:src => "{{secret.image}}"}/
-          %h2.text-center You score: {{score}} {{answerStatus}}
+          %h2.text-center You score: {{score}}
 
         .five.columns.options
           %ul.center{{"ng-repeat" => "movie in movies"}}
-            %li{{"ng-click" => "checkAnswer(movie.id)"}}
-              %a{:href => "", class: "button center"} {{movie.title}}
+            %li
+              %a#option{:href => "", class: "button center", "ng-class" => "{ 'right': $index == rightAnswer, 'wrong': $index == wrongAnswer }", "ng-click" => "checkAnswer(movie.id, $index)"}
+                {{movie.title}}

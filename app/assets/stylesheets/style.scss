@@ -2,6 +2,15 @@
   padding-top: 10%;
 }
 
+.button {
+  &.right {
+    border: solid 2px #2CFF2C;
+  }
+  &.wrong {
+    border: solid 2px #FA595F;
+  }
+}
+
 .center {
   display: block;
   margin: 0 auto;
