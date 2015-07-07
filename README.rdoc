@@ -1,4 +1,3 @@
 == README
 
-Testing polygon for various frameworks, now on Rails+Angular.
-
+App for guessing movies
