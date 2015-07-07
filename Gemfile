@@ -14,6 +14,8 @@ gem 'paperclip'
 gem 'rails_admin'
 gem 'angularjs-rails'
 gem 'lodash-rails'
+gem 'mechanize'
+gem 'colorize'
 
 group :development, :test do
   gem 'byebug'
