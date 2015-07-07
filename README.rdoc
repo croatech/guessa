@@ -1,3 +1,5 @@
 == README
 
 App for guessing movies
+
+rake import:list

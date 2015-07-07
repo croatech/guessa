@@ -11,11 +11,15 @@ namespace :import do
       page = agent.get(next_link) # redirect to next_page
 
       $next_link_id = next_link.split("=")[1].to_i + 1 if next_link # id of next page
-      if $next_link_id == 3 then break end # last page
+      if $next_link_id == 1000 then break end # last page
 
       page.search(".card").each do |item|
         title = item.search(".info .title").text
         year = item.search(".release_date").text[/[0-9]+/]
+        rating = item.search(".vote_average").text
+
+        # only movies rating greater than 6 and year > 1970
+        if rating.to_f < 6 || year.to_i < 1970 then next end
 
         # get image
         movie_id = item.search(".info .title").first["href"].split("/")[2] # get movie ID from url
