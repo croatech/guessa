@@ -25,10 +25,14 @@ namespace :import do
         movie_id = item.search(".info .title").first["href"].split("/")[2] # get movie ID from url
         movie_page = agent.get(base_url + "/" + movie_id.to_s) # redirect to current movie page
 
-        image = movie_page.search(".lightbox").first # get first screenshot
-        movie_image_name = image["src"].split("/")[-1]
-        movie_image_url = base_images_url + movie_image_name
-        agent.get(movie_image_url).save "./public/system/movies/images/" + movie_image_name
+        if movie_page.search(".lightbox").first["src"] # if screenshot exists
+          image = movie_page.search(".lightbox").first # get first screenshot
+          movie_image_name = image["src"].split("/")[-1]
+          movie_image_url = base_images_url + movie_image_name
+          agent.get(movie_image_url).save "./public/system/movies/images/" + movie_image_name
+        else
+          next
+        end
 
         if Movie.create(title: title, year: year, image_file_name: movie_image_name,
                         image_content_type: "image/jpeg")
@@ -36,8 +40,6 @@ namespace :import do
         else
           puts "#{title} | Fail!".red
         end
-
-        sleep(0.1)
       end
     end
   end
