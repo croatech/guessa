@@ -1,26 +1,29 @@
 .row.game.container{{"ng-controller" => "GameCtrl"}}
 
-  .start-block{{"ng-if" => "gameStatus == 'ready'"}}
+  .start-block{{"ng-show" => "gameStatus == 'ready'"}}
     %h1.text-center= "Hello, #{@current_user.name}. Are you ready?"
     
     %a{:href => "", class: "button center", "ng-click" => "startGame(#{@current_user.id})"}
       Start
 
-  .row.game-block{{"ng-if" => "gameStatus != 'ready'"}}
+  .row.game-block{{"ng-show" => "gameStatus != 'ready'"}}
     .movies{{"ng-init" => "getMovies()"}}
       .row.movie
         .col-md-7.block
           %img.center{:src => "{{secret.image}}"}/
-          %p.right-answer.text-center{{"ng-if" => "gameStatus == 'finished'"}}
+          %p.right-answer.text-center{{"ng-show" => "gameStatus == 'finished'"}}
             {{secretMovieTitle}}
           %h2.text-center Your score: {{score}}
 
-          .finished-actions.center{{"ng-if" => "gameStatus == 'finished'"}}
+          .finished-actions.center{{"ng-show" => "gameStatus == 'finished'"}}
             %a{:href => "/", class: "button"} 
               New Game
 
-            %a{:href => "", class: "button", "ng-click" => "showRating()"} 
+            %a{:href => "", class: "button", "ng-click" => "showRating()", "ng-show" => "ratingButton"} 
               Rating
+
+            %a{:href => "", class: "button", "ng-click" => "hideRating()", "ng-hide" => "ratingButton"}
+              Back
 
         .col-md-5.options{{"ng-hide" => "ratingShows"}}
           %ul.center{{"ng-repeat" => "movie in movies"}}
@@ -29,11 +32,11 @@
                 {{movie.title}}
 
           %ul.help-options{{"ng-hide" => "gameStatus == 'finished'"}}
-            %li{{"ng-if" => "firstHelpOption == true"}}
+            %li{{"ng-show" => "firstHelpOption == true"}}
               %a{:href => "", class: "button first", "ng-click" => "getFiftyFifty()"}
                 50/50
 
-            %li{{"ng-if" => "secondHelpOption == true"}}
+            %li{{"ng-show" => "secondHelpOption == true"}}
               %a{:href => "", class: "button first", "ng-click" => "getSkipQuestion()"}
                 Skip
 
