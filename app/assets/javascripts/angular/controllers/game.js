@@ -3,9 +3,9 @@ app.controller('GameCtrl', function($scope, Restangular, Games) {
   // init
   $scope.gameStatus = "ready"
 
-  $scope.firstOption = true
-  $scope.secondOption = true
-  $scope.thirdOption = true
+  $scope.firstHelpOption = true
+  $scope.secondHelpOption = true
+  $scope.thirdHelpOption = true
 
   $scope.startGame = function(userId) {
     $scope.score = 0
@@ -49,7 +49,7 @@ app.controller('GameCtrl', function($scope, Restangular, Games) {
   };
 
   $scope.getFiftyFifty = function() {
-    $scope.firstOption = false
+    $scope.firstHelpOption = false
 
     angular.forEach($scope.movies, function(value, key) {
       if ($scope.movies[key]["title"] == $scope.secret["title"]) {
@@ -65,5 +65,15 @@ app.controller('GameCtrl', function($scope, Restangular, Games) {
     $scope.movies = $scope.movies.slice(0, 2)  // deletes 2 last options(secret movie is first)
     $scope.movies = shuffle($scope.movies)     // shuffle
   };
+
+  $scope.getSkipQuestion = function() {
+    $scope.secondHelpOption = false
+    $scope.score += 1
+    $scope.getMovies()
+
+    // record update
+    $scope.current_game.score = $scope.score
+    $scope.current_game.put()
+  }
 
 });

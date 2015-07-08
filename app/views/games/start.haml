@@ -29,13 +29,13 @@
                 {{movie.title}}
 
           %ul.help-options
-            %li{{"ng-if" => "firstOption == true"}}
+            %li{{"ng-if" => "firstHelpOption == true"}}
               %a{:href => "", class: "button first", "ng-click" => "getFiftyFifty()"}
                 50/50
 
-            %li
-              %a{:href => "", class: "button first", "ng-click" => ""}
-                testing
+            %li{{"ng-if" => "secondHelpOption == true"}}
+              %a{:href => "", class: "button first", "ng-click" => "getSkipQuestion()"}
+                Skip
 
             %li
               %a{:href => "", class: "button first", "ng-click" => ""}
