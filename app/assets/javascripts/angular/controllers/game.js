@@ -3,6 +3,10 @@ app.controller('GameCtrl', function($scope, Restangular, Games) {
   // init
   $scope.gameStatus = "ready"
 
+  $scope.firstOption = true
+  $scope.secondOption = true
+  $scope.thirdOption = true
+
   $scope.startGame = function(userId) {
     $scope.score = 0
     $scope.gameStatus = "processing";
@@ -42,6 +46,24 @@ app.controller('GameCtrl', function($scope, Restangular, Games) {
   $scope.showRating = function() {
     $scope.ratingShows = true;
     $scope.games = Games.getGames();
-    console.log($scope.games)
   };
+
+  $scope.getFiftyFifty = function() {
+    $scope.firstOption = false
+
+    angular.forEach($scope.movies, function(value, key) {
+      if ($scope.movies[key]["title"] == $scope.secret["title"]) {
+        $indexSecretMovie = key
+        console.log($indexSecretMovie)
+      } else {
+        false
+      }
+    });
+
+    $scope.movies.splice($indexSecretMovie, 1) // delete secret movie from an array
+    $scope.movies.unshift($scope.secret)       // put secret movie to an array on first place  
+    $scope.movies = $scope.movies.slice(0, 2)  // deletes 2 last options(secret movie is first)
+    $scope.movies = shuffle($scope.movies)     // shuffle
+  };
+
 });

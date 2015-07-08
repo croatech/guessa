@@ -40,6 +40,8 @@ namespace :import do
         else
           puts "#{title} | Fail!".red
         end
+
+        sleep(3)
       end
     end
   end

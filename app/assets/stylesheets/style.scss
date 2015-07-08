@@ -52,8 +52,14 @@
         min-width: 500px;
       }
 
-      .options .button{
-        width: 350px;
+      .help-options {
+        margin-top: 60px;
+        
+        .button {
+          width: 33%;
+          display: inline-block;
+          float: left;
+        }
       }
 
       .finished-actions {

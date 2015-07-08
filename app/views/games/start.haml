@@ -28,6 +28,19 @@
               %a#option{:href => "", class: "button center", "ng-class" => "{ 'right': $index == rightAnswer, 'wrong': $index == wrongAnswer }", "ng-click" => "checkAnswer(movie.id, $index)"}
                 {{movie.title}}
 
+          %ul.help-options
+            %li{{"ng-if" => "firstOption == true"}}
+              %a{:href => "", class: "button first", "ng-click" => "getFiftyFifty()"}
+                50/50
+
+            %li
+              %a{:href => "", class: "button first", "ng-click" => ""}
+                testing
+
+            %li
+              %a{:href => "", class: "button first", "ng-click" => ""}
+                testing
+
         .col-md-5.rating{{"ng-show" => "ratingShows"}}
           %table.center
             %caption Rating
