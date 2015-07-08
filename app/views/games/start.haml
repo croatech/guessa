@@ -28,7 +28,7 @@
               %a#option{:href => "", class: "button center", "ng-class" => "{ 'right': $index == rightAnswer, 'wrong': $index == wrongAnswer }", "ng-click" => "checkAnswer(movie.id, $index)"}
                 {{movie.title}}
 
-          %ul.help-options
+          %ul.help-options{{"ng-hide" => "gameStatus == 'finished'"}}
             %li{{"ng-if" => "firstHelpOption == true"}}
               %a{:href => "", class: "button first", "ng-click" => "getFiftyFifty()"}
                 50/50
@@ -38,8 +38,8 @@
                 Skip
 
             %li
-              %a{:href => "", class: "button first", "ng-click" => ""}
-                testing
+              %a{:href => "", class: "button first", "ng-click" => "getMistery()"}
+                %img{:src => "http://images.clipartpanda.com/red-question-mark-clipart-bubble-question-mark-hi.png", :alt => "", width: 15}/
 
         .col-md-5.rating{{"ng-show" => "ratingShows"}}
           %table.center

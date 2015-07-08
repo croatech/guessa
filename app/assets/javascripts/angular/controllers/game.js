@@ -54,7 +54,6 @@ app.controller('GameCtrl', function($scope, Restangular, Games) {
     angular.forEach($scope.movies, function(value, key) {
       if ($scope.movies[key]["title"] == $scope.secret["title"]) {
         $indexSecretMovie = key
-        console.log($indexSecretMovie)
       } else {
         false
       }
@@ -74,6 +73,13 @@ app.controller('GameCtrl', function($scope, Restangular, Games) {
     // record update
     $scope.current_game.score = $scope.score
     $scope.current_game.put()
+  }
+
+  $scope.getMistery = function() {
+    $scope.score = 0
+    $scope.gameStatus = "finished"
+    $scope.showRating()
+    $scope.secret.image = "http://www.tnca.org/wp-content/uploads/2012/02/helloloser.jpg";
   }
 
 });
