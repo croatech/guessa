@@ -14,9 +14,8 @@ app.controller('GameCtrl', function($scope, Restangular, Games) {
     $scope.gameStatus = "processing"
 
     Games.create(userId)
-
-    Restangular.one('users', userId).all('games').getList().then(function(current_game) {
-      $scope.current_game = current_game.sort().reverse()[0]
+    Restangular.one('users', userId).all('games').getList().then(function(allGames) {
+      $scope.currentGame = allGames.sort().reverse()[0]
     })
   }
 
@@ -35,8 +34,8 @@ app.controller('GameCtrl', function($scope, Restangular, Games) {
       removeBorder()
 
       // record update
-      $scope.current_game.score = $scope.score
-      $scope.current_game.put()
+      $scope.currentGame.score = $scope.score
+      $scope.currentGame.put()
     } else {
       $scope.gameStatus = "finished"
       $scope.wrongAnswer = $index // set css style for wrong answer
@@ -79,8 +78,8 @@ app.controller('GameCtrl', function($scope, Restangular, Games) {
     $scope.getMovies()
 
     // record update
-    $scope.current_game.score = $scope.score
-    $scope.current_game.put()
+    $scope.currentGame.score = $scope.score
+    $scope.currentGame.put()
   }
 
   $scope.getMistery = function() {
