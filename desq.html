@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru" class="demo-1 no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<title>Deliver</title>
+		<meta name="description" content="Деливер, доставка, т.д" />
+		<meta name="keywords" content="Деливер, доставка, взять, т.д " />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<script src="js/snap.svg-min.js"></script>
+		<!--[if IE]>
+  		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+	
+	    <div id="top-menu">
+             <ul>
+	            <li><a href="">О Проекте</a></li>
+	            <li><a href="">Разработчики</a></li>
+	            <li><a href="">Профиль</a></li>
+	            <li><a href="">Контакты</a></li>
+	        </ul>
+	    </div>
+		<div class="container">
+			
+
+            	<div class="desq">
+              
+               <img src="img/1.png" />
+               <button>Взять деливер</button>
+                <button>Написать автору</button>
+                <h2>Заголовок Деливера</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium facere natus explicabo maiores architecto corporis obcaecati ut ullam, molestias inventore fugit debitis id aliquam? Velit necessitatibus reprehenderit dolor deserunt maiores harum sint aspernatur doloremque mollitia itaque quis, temporibus soluta qui sed possimus reiciendis officiis commodi nesciunt beatae? Tempora aliquid ullam impedit, voluptates tenetur, quis minus, dolorem optio qui totam dicta!</p>
+                <p>Откуда : Москва</p>
+                <p>Куда : Москва</p>
+                <p>Кому : Москва</p>
+                <p>Параметр : Значение</p>
+                <button>Назад</button>
+                
+                </div>		
+					
+			
+			
+			
+			
+		</div><!-- /container -->
+		<script>
+			(function() {
+	
+				function init() {
+					var speed = 250,
+						easing = mina.easeinout;
+
+					[].slice.call ( document.querySelectorAll( '#grid > a' ) ).forEach( function( el ) {
+						var s = Snap( el.querySelector( 'svg' ) ), path = s.select( 'path' ),
+							pathConfig = {
+								from : path.attr( 'd' ),
+								to : el.getAttribute( 'data-path-hover' )
+							};
+
+						el.addEventListener( 'mouseenter', function() {
+							path.animate( { 'path' : pathConfig.to }, speed, easing );
+						} );
+
+						el.addEventListener( 'mouseleave', function() {
+							path.animate( { 'path' : pathConfig.from }, speed, easing );
+						} );
+					} );
+				}
+
+				init();
+
+			})();
+		</script>
+	</body>
+</html>
