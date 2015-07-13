@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 gem 'rails', '4.2.3'
 gem 'sqlite3'
 gem 'sass-rails', '~> 5.0'
@@ -10,6 +9,9 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'pg'
+gem 'haml-rails'
+gem 'rails_admin'
 
 group :development, :test do
   gem 'byebug'

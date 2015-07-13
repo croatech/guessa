@@ -1,0 +1,25 @@
+%h1 Listing requests
+
+%table
+  %thead
+    %tr
+      %th Order
+      %th User
+      %th Status
+      %th
+      %th
+      %th
+
+  %tbody
+    - @requests.each do |request|
+      %tr
+        %td= request.order_id
+        %td= request.user_id
+        %td= request.status
+        %td= link_to 'Show', request
+        %td= link_to 'Edit', edit_request_path(request)
+        %td= link_to 'Destroy', request, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Request', new_request_path

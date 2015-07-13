@@ -1,0 +1,13 @@
+%section#grid.grid.clearfix
+  - if @orders.present?
+    .deliver
+      - @orders.each do |order|
+        %a{"data-path-hover" => "m 180,34.57627 -180,0 L 0,0 180,0 z", :href => "#"}
+          %figure
+            = image_tag "1.png"
+            %svg{:preserveaspectratio => "none", :viewbox => "0 0 180 320"}
+              %path{:d => "M 180,160 0,218 0,0 180,0 z"}
+            %figcaption
+              %h2= order.title
+              %p= order.desc
+              %button Взять деливер
