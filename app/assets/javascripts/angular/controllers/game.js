@@ -3,6 +3,8 @@ app.controller('GameCtrl', function($scope, Restangular, Games) {
   // init
   $scope.gameStatus = "ready"
 
+  $scope.amazonPath = "https://s3.amazonaws.com"
+
   $scope.firstHelpOption = true
   $scope.secondHelpOption = true
   $scope.thirdHelpOption = true

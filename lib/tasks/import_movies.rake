@@ -2,6 +2,17 @@ namespace :import do
   desc "Import movie list"
   task :movies => :environment do
 
+    connection = Fog::Storage.new({
+      :provider                 => 'AWS',
+      :aws_access_key_id        => ENV['S3_ACCESS_KEY_ID'],
+      :aws_secret_access_key    => ENV['S3_SECRET_ACCESS_KEY']
+    })
+
+    directory = connection.directories.create(
+      :key    => "guessapp", # globally unique name
+      :public => true
+    )
+
     agent = Mechanize.new
     base_url = "https://www.themoviedb.org/movie"
     base_images_url = "https://image.tmdb.org/t/p/w780/"
@@ -27,14 +38,24 @@ namespace :import do
 
         if movie_page.search(".lightbox").first["src"] # if screenshot exists
           image = movie_page.search(".lightbox").first # get first screenshot
-          movie_image_name = image["src"].split("/")[-1]
+          movie_image_name = image["src"].split("/")[-1] # get filename
           movie_image_url = base_images_url + movie_image_name
           agent.get(movie_image_url).save "./public/system/movies/images/" + movie_image_name
+
+          absolute_local_path_to_image = "./public/system/movies/images/" + movie_image_name
         else
           next
         end
 
-        if Movie.create(title: title, year: year, image_file_name: movie_image_name,
+        file = directory.files.create(
+          :key    => movie_image_name,
+          :body   => File.open(absolute_local_path_to_image),
+          :public => true
+        )
+
+        File.delete(absolute_local_path_to_image)
+
+        if Movie.create(title: title, year: year, image_file_name: directory.key + "/" + movie_image_name,
                         image_content_type: "image/jpeg")
           puts "#{title} | ".light_blue + "Done!".green
         else

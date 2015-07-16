@@ -10,7 +10,7 @@
     .movies{{"ng-init" => "getMovies()"}}
       .row.movie
         .col-md-7.block
-          %img.center{:src => "{{secret.image}}"}/
+          %img.center{:src => "{{amazonPath}}/{{secret.image_file_name}}"}/
           %p.right-answer.text-center{{"ng-show" => "gameStatus == 'finished'"}}
             {{secretMovieTitle}}
           %h2.text-center Your score: {{score}}

@@ -16,6 +16,7 @@ gem 'angularjs-rails'
 gem 'lodash-rails'
 gem 'mechanize'
 gem 'colorize'
+gem 'fog'
 
 group :development, :test do
   gem 'byebug'
