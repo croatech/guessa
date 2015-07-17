@@ -1,5 +1,5 @@
 module S3
-  def S3.set_directory(bucket_name)
+  def S3.set_directory
     connection = Fog::Storage.new({
       :provider                 => 'AWS',
       :aws_access_key_id        => ENV['S3_ACCESS_KEY_ID'],
@@ -7,7 +7,7 @@ module S3
     })
 
     directory = connection.directories.create(
-      :key    => bucket_name, # globally unique name
+      :key    => "guessapp", # globally unique name
       :public => true
     )
 
