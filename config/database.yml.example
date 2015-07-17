@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # SQLite version 3.x
 #   gem install sqlite3
 #
@@ -6,11 +7,21 @@
 #
 default: &default
   adapter: sqlite3
+=======
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  port: 5432
+  username: postgres
+  password: ***
+>>>>>>> 24d59a7a26fcebacf7dda4b196139755c4a8118b
   pool: 5
   timeout: 5000
 
 development:
   <<: *default
+<<<<<<< HEAD
   database: db/development.sqlite3
 
 # Warning: The database defined as "test" will be erased and
@@ -23,3 +34,14 @@ test:
 production:
   <<: *default
   database: db/production.sqlite3
+=======
+  database: deliver_development
+
+test:
+  <<: *default
+  database: deliver_test
+
+production:
+  <<: *default
+  database: deliver_production
+>>>>>>> 24d59a7a26fcebacf7dda4b196139755c4a8118b
