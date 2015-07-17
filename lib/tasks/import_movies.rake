@@ -33,6 +33,7 @@ namespace :import do
           image = movie_page.search(".lightbox").first # get first screenshot
           movie_image_name = image["src"].split("/")[-1] # get filename
           movie_image_url = base_images_url + movie_image_name
+
           agent.get(movie_image_url).save "./public/system/movies/images/" + movie_image_name
 
           absolute_local_path_to_image = "./public/system/movies/images/" + movie_image_name
@@ -46,7 +47,7 @@ namespace :import do
 
         if Movie.create(title: title, year: year, image_file_name: directory.key + "/" + movie_image_name,
                         image_content_type: "image/jpeg")
-          puts "#{title} | ".light_blue + "Done!".green
+          puts "#{title} | Done!".light_blue
         else
           puts "#{title} | Fail!".red
         end
