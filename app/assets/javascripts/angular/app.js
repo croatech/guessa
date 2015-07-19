@@ -6,3 +6,4 @@ var app = angular.module('Guessa', ['restangular'])
    RestangularProvider.setRequestSuffix('.json');
    RestangularProvider.setDefaultHttpFields({xsrfCookieName:'csrftoken', xsrfHeaderName:'X-CSRFToken'});
 });
+
