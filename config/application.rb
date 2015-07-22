@@ -23,11 +23,5 @@ module Guessa
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-    if Rails.env.production?
-      config.action_dispatch.default_headers.merge!({
-        'Access-Control-Allow-Origin' => 'guessmovie.herokuapp.com',
-        'Access-Control-Request-Method' => '*'
-      })
-    end
   end
 end
