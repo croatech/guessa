@@ -1,0 +1,18 @@
+24030 silly lockFile 883792ca-ombined-stream-1-0-5-package-tgz tar:///home/vitaliy/.npm/combined-stream/1.0.5/package.tgz
+24031 silly lockFile 883792ca-ombined-stream-1-0-5-package-tgz tar:///home/vitaliy/.npm/combined-stream/1.0.5/package.tgz
+24032 silly lockFile a49b98e2-ome-vitaliy-npm-bl-1-0-0-package /home/vitaliy/.npm/bl/1.0.0/package
+24033 verbose lock /home/vitaliy/.npm/bl/1.0.0/package /home/vitaliy/.npm/a49b98e2-ome-vitaliy-npm-bl-1-0-0-package.lock
+24034 error Error: ENOENT, open '/home/vitaliy/tmp/npm-12071-l1O4yDw6/1437523045740-0.43692154437303543/package/README.md'
+24035 error If you need help, you may report this log at:
+24035 error     <http://github.com/isaacs/npm/issues>
+24035 error or email it to:
+24035 error     <npm-@googlegroups.com>
+24036 error System Linux 3.13.0-37-generic
+24037 error command "/usr/bin/nodejs" "/usr/bin/npm" "install" "-g" "yo"
+24038 error cwd /home/vitaliy/projects/guessa
+24039 error node -v v0.10.25
+24040 error npm -v 1.3.10
+24041 error path /home/vitaliy/tmp/npm-12071-l1O4yDw6/1437523045740-0.43692154437303543/package/README.md
+24042 error code ENOENT
+24043 error errno 34
+24044 verbose exit [ 34, true ]
