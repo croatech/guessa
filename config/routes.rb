@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     get 'start', on: :collection
   end
 
-  resources :users, only: [:index], defaults: { format: :json } do
+  resources :users, only: [:index, :show], defaults: { format: :json } do
     resources :games, only: [:index, :update]
   end
 
