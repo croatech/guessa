@@ -6,4 +6,8 @@ class ApplicationController < ActionController::Base
   def current_user
     @user = User.find_by_session_key(session[:session_key]) if session[:session_key].present?
   end
+
+  def check_exists_key(session_key)
+  	(session_key && User.find_by_session_key(session_key)).present?
+  end
 end

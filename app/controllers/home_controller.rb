@@ -1,7 +1,9 @@
 class HomeController < ApplicationController
   def index
-    if session[:session_key].present?
+    if check_exists_key(session[:session_key])
       redirect_to start_games_path
+    else
+      session.clear
     end
   end
 

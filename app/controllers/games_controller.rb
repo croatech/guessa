@@ -34,10 +34,10 @@ class GamesController < ApplicationController
   end
 
   def start
-    if !session[:session_key]
-      redirect_to root_path
-    else
+    if check_exists_key(session[:session_key])
       @current_user = current_user
+    else
+      redirect_to root_path
     end
   end
 end

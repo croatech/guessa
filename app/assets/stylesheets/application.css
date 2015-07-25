@@ -1,4 +1,2 @@
-@import "normalize.css";
-@import "grid.min.css";
-@import "skeleton.css";
-@import "style.scss";
+//= require_tree .
+//= require_self
