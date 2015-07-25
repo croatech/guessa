@@ -15,9 +15,4 @@ class ApplicationController < ActionController::Base
     def verified_request?
       super || valid_authenticity_token?(session, request.headers['X-XSRF-TOKEN'])
     end
-
-    # In Rails 4.1 and below
-    def verified_request?
-      super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
-    end
 end

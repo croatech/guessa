@@ -40370,107 +40370,102 @@ var minlengthDirective = function() {
 !window.angular.$$csp() && window.angular.element(document).find('head').prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 var app = angular.module('Guessa', ['restangular'])
   .config(function (RestangularProvider) {
-
-   //RestangularProvider.setBaseUrl("http://localhost:3000");
-   //RestangularProvider.setBaseUrl("http://guessmovie.herokuapp.com");
+    
    RestangularProvider.setRequestSuffix('.json');
    RestangularProvider.setDefaultHttpFields({xsrfCookieName:'csrftoken', xsrfHeaderName:'X-CSRFToken'});
 });
 
-app.controller('GameCtrl', function($scope, Restangular, Games) {
+app.controller('GameController', GameController)
+
+function GameController($scope, Restangular, gameService) {
+  var vm = this;
 
   // init
-  $scope.gameStatus = "ready"
+  vm.gameStatus = "ready";
 
-  $scope.amazonPath = "https://s3.amazonaws.com"
+  vm.firstHelpOption = true;
+  vm.secondHelpOption = true;
+  vm.thirdHelpOption = true;
 
-  $scope.firstHelpOption = true
-  $scope.secondHelpOption = true
-  $scope.thirdHelpOption = true
+  vm.startGame = function(userId) {
+    vm.score = 0;
+    vm.gameStatus = "processing";
 
-  $scope.ratingButton = true
-
-  $scope.startGame = function(userId) {
-    $scope.score = 0
-    $scope.gameStatus = "processing"
-
-    Games.create(userId)
-    Restangular.one('users', userId).all('games').getList().then(function(allGames) {
-      $scope.currentGame = allGames.sort().reverse()[0]
+    gameService.create(userId);
+    Restangular.one('users', userId).all('games').getList().then(function(allgameService) {
+      $currentGame = allgameService.sort().reverse()[0];
     })
   }
 
-  $scope.getMovies = function() {
+  vm.getMovies = function() {
     Restangular.all('movies').getList().then(function(movies) {
-      $scope.secret = movies[0]
-      $scope.movies = shuffle(movies)
+      vm.secret = movies[0];
+      vm.movies = shuffle(movies);
     })
   }
 
-  $scope.checkAnswer = function(answerId, $index) {
-    if ($scope.secret.id == answerId && $scope.gameStatus != "finished") {
-      $scope.score += 1
-      $scope.rightAnswer = $index // set css style for right answer
-      $scope.getMovies()
-      removeBorder()
+  vm.checkAnswer = function(answerId, $index) {
+    if (vm.secret.id == answerId && vm.gameStatus != "finished") {
+      vm.score += 1;
+      vm.rightAnswer = $index; // set css style for right answer
+      vm.getMovies();
+      removeBorder();
 
       // record update
-      $scope.currentGame.score = $scope.score
-      $scope.currentGame.put()
+      $currentGame.score = vm.score;
+      $currentGame.put();
     } else {
-      $scope.gameStatus = "finished"
-      $scope.wrongAnswer = $index // set css style for wrong answer
-      $scope.secretMovieTitle = $scope.secret.title
-      removeBorder()
+      vm.gameStatus = "finished";
+      vm.wrongAnswer = $index ;// set css style for wrong answer
+      vm.secretMovieTitle = vm.secret.title;
+      removeBorder();
     }
   }
 
-  $scope.showRating = function() {
-    $scope.ratingShows = true
-    $scope.ratingButton = false
-    $scope.games = Games.getGames()
+  vm.showRating = function() {
+    vm.ratingShows = true;
+    $scope.games_list = gameService.getGames();
   }
 
-  $scope.hideRating = function() {
-    $scope.ratingShows = false
-    $scope.ratingButton = true
+  vm.hideRating = function() {
+    vm.ratingShows = false;
   }
 
-  $scope.getFiftyFifty = function() {
-    $scope.firstHelpOption = false
+  vm.getFiftyFifty = function() {
+    vm.firstHelpOption = false;
 
-    angular.forEach($scope.movies, function(value, key) {
-      if ($scope.movies[key]["title"] == $scope.secret["title"]) {
-        $indexSecretMovie = key
+    angular.forEach(vm.movies, function(value, key) {
+      if (vm.movies[key]["title"] == vm.secret["title"]) {
+        $indexSecretMovie = key;
       } else {
         false
       }
     })
 
-    $scope.movies.splice($indexSecretMovie, 1) // delete secret movie from an array
-    $scope.movies.unshift($scope.secret)       // put secret movie to an array on first place  
-    $scope.movies = $scope.movies.slice(0, 2)  // deletes 2 last options(secret movie is first)
-    $scope.movies = shuffle($scope.movies)     // shuffle
+    vm.movies.splice($indexSecretMovie, 1); // delete secret movie from an array
+    vm.movies.unshift(vm.secret);       // put secret movie to an array on first place  
+    vm.movies = vm.movies.slice(0, 2);  // deletes 2 last options(secret movie is first)
+    vm.movies = shuffle(vm.movies);     // shuffle
   }
 
-  $scope.getSkipQuestion = function() {
-    $scope.secondHelpOption = false
-    $scope.score += 1
-    $scope.getMovies()
+  vm.getSkipQuestion = function() {
+    vm.secondHelpOption = false;
+    vm.score += 1;
+    vm.getMovies();
 
     // record update
-    $scope.currentGame.score = $scope.score
-    $scope.currentGame.put()
+    $currentGame.score = vm.score;
+    $currentGame.put();
   }
 
-  $scope.getMistery = function() {
-    $scope.score = 0
-    $scope.gameStatus = "finished"
-    $scope.showRating()
-    $scope.secret.image = "http://www.tnca.org/wp-content/uploads/2012/02/helloloser.jpg"
+  vm.getMistery = function() {
+    vm.score = 0;
+    vm.gameStatus = "finished";
+    vm.showRating();
+    vm.secret.image = "http://www.tnca.org/wp-content/uploads/2012/02/helloloser.jpg";
   }
 
-})
+}
 ;
 function shuffle(o) {
   for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
@@ -41833,21 +41828,30 @@ restangular.provider('Restangular', function() {
 });
 
 })();
-app.factory('Games', function(Restangular) {
+app.factory('gameService', gameService);
 
-  return {
-    create: function(userId) {
-      return Restangular.all('games').post({user_id: userId})
-    },
-    getMovies: function() {
-      return Restangular.all('movies').getList().$object
-    }, 
-    getGames: function() {
-      return Restangular.all('games').getList().$object
-    }
-  }
+function gameService(Restangular) {
+  var service = {
+      create    : create,
+      getMovies : getMovies,
+      getGames  : getGames
+  };
 
-})
+  return service;
+  /////////////////////////
+
+  function create(userId) {
+    return Restangular.all('games').post({user_id: userId});
+  };
+
+  function getMovies() {
+    return Restangular.all('movies').getList().$object;
+  };
+
+  function getGames() {
+    return Restangular.all('games').getList().$object;
+  };
+}
 ;
 /*!
  * jQuery JavaScript Library v1.11.2
