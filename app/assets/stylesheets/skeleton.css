@@ -84,6 +84,7 @@ input[type="submit"],
 input[type="reset"],
 input[type="button"] {
   display: inline-block;
+  font-family: 'Open Sans', sans-serif;
   height: 38px;
   padding: 0 30px;
   color: #555;
@@ -324,11 +325,11 @@ there.
 /* Larger than tablet */
 @media (max-width: 750px) {
   h1 {
-    font-size: 4rem!important;
+    font-size: 4rem;
   }
 
   .button {
-    font-size: 1.5rem!important;
+    font-size: 1.5rem;
   }
 }
 
