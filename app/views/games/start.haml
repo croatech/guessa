@@ -1,50 +1,50 @@
-.row.game.container{{"ng-controller" => "GameCtrl"}}
+.row.game.container{{"ng-controller" => "GameController as game"}}
 
-  .start-block{{"ng-show" => "gameStatus == 'ready'"}}
+  .start-block{{"ng-show" => "game.gameStatus == 'ready'"}}
     %h1.text-center= "Hello, #{@current_user.name}. Are you ready?"
     
-    %a{:href => "", class: "button center", "ng-click" => "startGame(#{@current_user.id})"}
+    %a{:href => "", class: "button center", "ng-click" => "game.startGame(#{@current_user.id})"}
       Start
 
-  .row.game-block{{"ng-show" => "gameStatus != 'ready'"}}
-    .movies{{"ng-init" => "getMovies()"}}
+  .row.game-block{{"ng-show" => "game.gameStatus != 'ready'"}}
+    .movies{{"ng-init" => "game.getMovies()"}}
       .row.movie
         .col-md-7.block
-          %img.center{:src => "{{amazonPath}}/{{secret.image_file_name}}"}/
-          %p.right-answer.text-center{{"ng-show" => "gameStatus == 'finished'"}}
-            {{secretMovieTitle}}
-          %h2.text-center Your score: {{score}}
+          %img.center{:src => "https://s3.amazonaws.com/{{game.secret.image_file_name}}"}/
+          %p.right-answer.text-center{{"ng-show" => "game.gameStatus == 'finished'"}}
+            {{game.secretMovieTitle}}
+          %h2.text-center Your score: {{game.score}}
 
-          .finished-actions.center{{"ng-show" => "gameStatus == 'finished'"}}
+          .finished-actions.center{{"ng-show" => "game.gameStatus == 'finished'"}}
             %a{:href => "/", class: "button"} 
               New Game
 
-            %a{:href => "", class: "button", "ng-click" => "showRating()", "ng-show" => "ratingButton"} 
+            %a{:href => "", class: "button", "ng-click" => "game.showRating()", "ng-hide" => "game.ratingShows"} 
               Rating
 
-            %a{:href => "", class: "button", "ng-click" => "hideRating()", "ng-hide" => "ratingButton"}
+            %a{:href => "", class: "button", "ng-click" => "game.hideRating()", "ng-show" => "game.ratingShows"}
               Back
 
-        .col-md-5.options{{"ng-hide" => "ratingShows"}}
-          %ul.center{{"ng-repeat" => "movie in movies"}}
+        .col-md-5.options{{"ng-hide" => "game.ratingShows"}}
+          %ul.center{{"ng-repeat" => "movie in game.movies"}}
             %li
-              %a#option{:href => "", class: "button center", "ng-class" => "{ 'right': $index == rightAnswer, 'wrong': $index == wrongAnswer }", "ng-click" => "checkAnswer(movie.id, $index)"}
+              %a#option{:href => "", class: "button center", "ng-class" => "{ 'right': $index == game.rightAnswer, 'wrong': $index == game.wrongAnswer }", "ng-click" => "game.checkAnswer(movie.id, $index)"}
                 {{movie.title}}
 
-          %ul.help-options{{"ng-hide" => "gameStatus == 'finished'"}}
-            %li{{"ng-show" => "firstHelpOption == true"}}
-              %a{:href => "", class: "button first", "ng-click" => "getFiftyFifty()"}
+          %ul.help-options{{"ng-hide" => "game.gameStatus == 'finished'"}}
+            %li{{"ng-show" => "game.firstHelpOption == true"}}
+              %a{:href => "", class: "button first", "ng-click" => "game.getFiftyFifty()"}
                 50/50
 
-            %li{{"ng-show" => "secondHelpOption == true"}}
-              %a{:href => "", class: "button first", "ng-click" => "getSkipQuestion()"}
+            %li{{"ng-show" => "game.secondHelpOption == true"}}
+              %a{:href => "", class: "button first", "ng-click" => "game.getSkipQuestion()"}
                 Skip
 
-            %li
-              %a{:href => "", class: "button first", "ng-click" => "getMistery()"}
+            %li{{"ng-show" => "game.thirdHelpOption == true"}}
+              %a{:href => "", class: "button first", "ng-click" => "game.getMistery()"}
                 %img{:src => "http://images.clipartpanda.com/red-question-mark-clipart-bubble-question-mark-hi.png", :alt => "", width: 15}/
 
-        .col-md-5.rating{{"ng-show" => "ratingShows"}}
+        .col-md-5.rating{{"ng-show" => "game.ratingShows"}}
           %table.center
             %caption Rating
 
@@ -52,6 +52,6 @@
               %th Name
               %th Score
 
-            %tr{{"ng-repeat" => "game in games"}}
+            %tr{{"ng-repeat" => "game in games_list"}}
               %td {{game.user.name}}
               %td {{game.score}}
