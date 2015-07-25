@@ -1,6 +1,4 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: [:show, :update]
-
   def index
     @games = Game.all.order(score: :desc).includes(:user).limit(6)
 
@@ -11,15 +9,8 @@ class GamesController < ApplicationController
     end
   end
 
-  def show
-  end
-
-  def new
-    @game = Game.new
-  end
-
   def create
-    @game = Game.new(game_params)
+    @game = current_user.games.new
 
     respond_to do |format|
       if @game.save
@@ -33,9 +24,11 @@ class GamesController < ApplicationController
   end
 
   def update
+    @game = current_user.games.find(params[:id])
+
     respond_to do |format|
-      if @game.update(game_params)
-        format.html { redirect_to @game, notice: 'Fuck was successfully updated.' }
+      if @game.update(score: params[:score])
+        format.html { redirect_to @game, notice: 'Game was successfully updated.' }
         format.json { render :show, status: :ok, location: @game }
       else
         format.html { render :edit }
@@ -48,17 +41,7 @@ class GamesController < ApplicationController
     if !session[:session_key]
       redirect_to root_path
     else
-      @current_user = User.find_by_session_key(session[:session_key])
+      @current_user = current_user
     end
   end
-
-  private
-
-    def set_game
-      @game = Game.find(params[:id])
-    end
-
-    def game_params
-      params.require(:game).permit(:score, :user_id)
-    end
 end
