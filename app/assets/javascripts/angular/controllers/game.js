@@ -1,6 +1,6 @@
 app.controller('GameController', GameController)
 
-function GameController($scope, Restangular, Games) {
+function GameController($scope, Restangular, gameService) {
   var vm = this;
 
   // init
@@ -14,9 +14,9 @@ function GameController($scope, Restangular, Games) {
     vm.score = 0;
     vm.gameStatus = "processing";
 
-    Games.create(userId);
-    Restangular.one('users', userId).all('games').getList().then(function(allGames) {
-      $currentGame = allGames.sort().reverse()[0];
+    gameService.create(userId);
+    Restangular.one('users', userId).all('games').getList().then(function(allgameService) {
+      $currentGame = allgameService.sort().reverse()[0];
     })
   }
 
@@ -47,7 +47,7 @@ function GameController($scope, Restangular, Games) {
 
   vm.showRating = function() {
     vm.ratingShows = true;
-    $scope.games_list = Games.getGames();
+    $scope.games_list = gameService.getGames();
   }
 
   vm.hideRating = function() {
