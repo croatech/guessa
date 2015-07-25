@@ -1,6 +1,12 @@
 class GamesController < ApplicationController
   def index
     @games = Game.all.order(score: :desc).includes(:user).limit(6)
+
+    respond_to do |format|
+      format.json do
+        render :json => @games.to_json(:include => { :user => { :only => :name } })
+      end
+    end
   end
 
   def create
