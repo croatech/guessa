@@ -13,5 +13,5 @@ Rails.application.routes.draw do
     resources :games, only: [:index, :update]
   end
 
-  resources :movies, only: [:index], defaults: { format: :json }
+  resources :movies, only: [:index]
 end
