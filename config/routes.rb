@@ -9,8 +9,8 @@ Rails.application.routes.draw do
     get 'start', on: :collection
   end
 
-  resources :users, only: [:index, :show], defaults: { format: :json } do
-    resources :games, only: [:index, :update]
+  resources :users, only: :index do
+    resources :games, only: [:index, :update], defaults: { format: :json }
   end
 
   resources :movies, only: [:index], defaults: { format: :json }
