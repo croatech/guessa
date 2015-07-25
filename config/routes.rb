@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   post 'login' => 'home#login'
 
-  resources :games, except: [:edit] do
+  resources :games, except: :all do
     get 'start', on: :collection
   end
 
@@ -13,5 +13,5 @@ Rails.application.routes.draw do
     resources :games, only: [:index, :update]
   end
 
-  resources :movies, only: [:index]
+  resources :movies, only: [:index], defaults: { format: :json }
 end
