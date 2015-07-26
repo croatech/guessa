@@ -4,7 +4,7 @@ namespace :import do
   desc "Import movie list"
   task :movies => :environment do
 
-    directory = S3.set_directory # set S3 directory
+    directory = S3.set_directory
 
     agent = Mechanize.new
     base_url = "https://www.themoviedb.org/movie"
