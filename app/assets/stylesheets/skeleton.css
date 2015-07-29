@@ -138,7 +138,6 @@ input[type="button"].button-primary:focus {
 
 .button {
   margin : 20px auto;
-  width : 200px;
   overflow: hidden;
   text-align : center;
   transition : .2s;

@@ -5,5 +5,6 @@ class UsersController < ApplicationController
 
   def session_destroy
     session.clear
+    redirect_to root_path
   end
 end

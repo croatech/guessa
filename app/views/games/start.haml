@@ -9,7 +9,7 @@
         .btnTwo
           %p.btnText2 Go!
 
-      .button
+      .button{"ng-controller"=> "UserController as user", "ng-click" => "user.sessionDestroy()"}
         %p.btnText Logout
         .btnTwo
           %p.btnText2 X

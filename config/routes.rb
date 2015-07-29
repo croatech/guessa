@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: :index do
-    get :session_destroy, on: :collection
+    get :session_destroy, on: :collection, as: "session_destroy"
     resources :games, only: [:index, :update], defaults: { format: :json }
   end
 
