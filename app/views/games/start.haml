@@ -1,10 +1,18 @@
 .row.game.container{{"ng-controller" => "GameController as game"}}
 
   .start-block{{"ng-show" => "game.gameStatus == 'ready'"}}
-    %h1.text-center= "Hello, #{@current_user.name}. Are you ready?"
-    
-    %a{:href => "", class: "button center", "ng-click" => "game.startGame(#{@current_user.id})"}
-      Start
+    %h1.text-center= "Hello, #{@current_user.name}."
+
+    .game-actions.center
+      .button{"ng-click" => "game.startGame(#{@current_user.id})"}
+        %p.btnText Ready?
+        .btnTwo
+          %p.btnText2 Go!
+
+      .button
+        %p.btnText Logout
+        .btnTwo
+          %p.btnText2 X
 
   .row.game-block{{"ng-show" => "game.gameStatus != 'ready'"}}
     .movies{{"ng-init" => "game.getMovies()"}}

@@ -30,6 +30,9 @@
 
 .game {
   .start-block {
+    .game-actions {
+      max-width: 405px;
+    }
     .button {
       max-width: 250px;
       margin-top: 50px;

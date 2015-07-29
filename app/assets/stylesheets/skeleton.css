@@ -136,6 +136,43 @@ input[type="button"].button-primary:focus {
   background-color: #1EAEDB;
   border-color: #1EAEDB; }
 
+.button {
+  margin : 20px auto;
+  width : 200px;
+  overflow: hidden;
+  text-align : center;
+  transition : .2s;
+  cursor : pointer;
+  /*box-shadow: 0px 1px 2px rgba(0,0,0,.2);*/
+}
+.btnTwo {
+  position : relative;
+  width : 200px;
+  height : 100px;
+  margin-top: -100px;
+  padding-top: 2px;
+  background : #26A69A;
+  left : -250px;
+  transition : .3s;
+}
+.btnText {
+  transition : .3s;
+}
+.btnText2 {
+  margin-top : 35px;
+  margin-right : -130px;
+  color : #FFF;
+}
+.button:hover .btnTwo{ /*When hovering over .button change .btnTwo*/
+  left: -130px;
+}
+.button:hover .btnText{ /*When hovering over .button change .btnText*/
+  margin-left : 65px;
+}
+.button:active { /*Clicked and held*/
+  box-shadow: 0px 5px 5px rgba(0,0,0,0.4);
+}
+
 
 /* Forms
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
