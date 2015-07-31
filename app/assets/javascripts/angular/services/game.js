@@ -24,7 +24,9 @@ function gameService(Restangular, $http) {
   };
 
   function getLast() {
-    return $http.get('http://localhost:3000/games/get_last.json') 
+    var host = location.host;
+
+    return $http.get('http://' + host + '/games/get_last.json') 
       .success(function(data) {
         return data;
       })
