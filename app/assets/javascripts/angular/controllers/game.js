@@ -10,15 +10,12 @@ function GameController($scope, Restangular, gameService) {
   vm.secondHelpOption = true;
   vm.thirdHelpOption = true;
 
-  vm.startGame = function(userId) {
+  vm.startGame = function() {
     vm.score = 0;
     vm.gameStatus = "processing";
 
-    gameService.create(userId);
-
-    gameService.getLast().then(function(res) {
-      $currentGame = Restangular.one('games', res.data.id);
-      console.log(location.host);
+    gameService.create().then(function(res) {
+      $currentGame = res;
     })
   }
 

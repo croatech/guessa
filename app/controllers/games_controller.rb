@@ -1,6 +1,10 @@
 class GamesController < ApplicationController
   def index
-    @games = Game.all.order(score: :desc).includes(:user).limit(6)
+    if params[:user_id]
+      @games = current_user.games
+    else
+      @games = Game.all.order(score: :desc).includes(:user).limit(6)
+    end
 
     respond_to do |format|
       format.json do
@@ -39,9 +43,5 @@ class GamesController < ApplicationController
     else
       redirect_to root_path
     end
-  end
-
-  def get_last
-    @game = current_user.games.last
   end
 end

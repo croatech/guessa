@@ -4,7 +4,7 @@
     %h1.text-center= "Hello, #{@current_user.name}."
 
     .game-actions.center
-      .button{"ng-click" => "game.startGame(#{@current_user.id})"}
+      .button{"ng-click" => "game.startGame()"}
         %p.btnText Ready?
         .btnTwo
           %p.btnText2 Go!
