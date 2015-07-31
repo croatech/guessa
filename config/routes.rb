@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   post 'login' => 'home#login'
 
   resources :games, except: :all do
-    get 'start', on: :collection
+    collection do
+      get 'start'
+      get :get_last
+    end
   end
 
   resources :users, only: :index do

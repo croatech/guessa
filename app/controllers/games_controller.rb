@@ -40,4 +40,8 @@ class GamesController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def get_last
+    @game = current_user.games.last
+  end
 end

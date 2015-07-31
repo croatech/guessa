@@ -15,8 +15,11 @@ function GameController($scope, Restangular, gameService) {
     vm.gameStatus = "processing";
 
     gameService.create(userId);
-    Restangular.one('users', userId).all('games').getList().then(function(allgameService) {
-      $currentGame = allgameService.sort().reverse()[0];
+
+    gameService.getLast().then(function(res) {
+      $currentGame = Restangular.one('games', res.data.id);
+      console.log(userId);
+      console.log(res.data.id);
     })
   }
 

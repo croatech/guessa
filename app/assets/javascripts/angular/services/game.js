@@ -1,10 +1,11 @@
 app.factory('gameService', gameService);
 
-function gameService(Restangular) {
+function gameService(Restangular, $http) {
   var service = {
       create    : create,
       getMovies : getMovies,
-      getGames  : getGames
+      getGames  : getGames,
+      getLast   : getLast
   };
 
   return service;
@@ -20,5 +21,15 @@ function gameService(Restangular) {
 
   function getGames() {
     return Restangular.all('games').getList().$object;
+  };
+
+  function getLast() {
+    return $http.get('http://localhost:3000/games/get_last.json') 
+      .success(function(data) {
+        return data;
+      })
+      .error(function(err) {
+        return err;
+      });
   };
 }
