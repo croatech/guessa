@@ -18,8 +18,6 @@ function GameController($scope, Restangular, gameService) {
 
     gameService.getLast().then(function(res) {
       $currentGame = Restangular.one('games', res.data.id);
-      console.log(userId);
-      console.log(res.data.id);
     })
   }
 
