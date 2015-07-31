@@ -1,10 +1,12 @@
 app.controller('GameController', GameController)
 
-function GameController($scope, Restangular, gameService) {
+function GameController(Restangular, gameService) {
   var vm = this;
 
   // init
   vm.gameStatus = "ready";
+
+  vm.imageHostingUrl = "https://s3.amazonaws.com";
 
   vm.firstHelpOption = true;
   vm.secondHelpOption = true;
@@ -20,7 +22,7 @@ function GameController($scope, Restangular, gameService) {
   }
 
   vm.getMovies = function() {
-    Restangular.all('movies').getList().then(function(movies) {
+    gameService.getMovies().then(function(movies) {
       vm.secret = movies[0];
       vm.movies = shuffle(movies);
     })
@@ -46,7 +48,7 @@ function GameController($scope, Restangular, gameService) {
 
   vm.showRating = function() {
     vm.ratingShows = true;
-    $scope.games_list = gameService.getGames();
+    vm.gamesList = gameService.getGames();
   }
 
   vm.hideRating = function() {
@@ -84,7 +86,7 @@ function GameController($scope, Restangular, gameService) {
     vm.score = 0;
     vm.gameStatus = "finished";
     vm.showRating();
-    vm.secret.image = "http://www.tnca.org/wp-content/uploads/2012/02/helloloser.jpg";
+    vm.imageHostingUrl = "http://www.tnca.org";
+    vm.secret.image_file_name = "wp-content/uploads/2012/02/helloloser.jpg";
   }
-
 }

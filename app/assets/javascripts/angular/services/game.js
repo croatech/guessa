@@ -1,6 +1,6 @@
 app.factory('gameService', gameService);
 
-function gameService(Restangular, $http) {
+function gameService(Restangular) {
   var service = {
       create    : create,
       getMovies : getMovies,
@@ -15,7 +15,7 @@ function gameService(Restangular, $http) {
   };
 
   function getMovies() {
-    return Restangular.all('movies').getList().$object;
+    return Restangular.all('movies').getList();
   };
 
   function getGames() {

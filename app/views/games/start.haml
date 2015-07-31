@@ -18,19 +18,19 @@
     .movies{{"ng-init" => "game.getMovies()"}}
       .row.movie
         .col-md-7.block
-          %img.center{:src => "https://s3.amazonaws.com/{{game.secret.image_file_name}}"}/
+          %img.center{:src => "{{game.imageHostingUrl}}/{{game.secret.image_file_name}}"}/
           %p.right-answer.text-center{{"ng-show" => "game.gameStatus == 'finished'"}}
             {{game.secretMovieTitle}}
           %h2.text-center Your score: {{game.score}}
 
-          .finished-actions.center{{"ng-show" => "game.gameStatus == 'finished'"}}
-            %a{:href => "/", class: "button"} 
+          .row.finished-actions.center{{"ng-show" => "game.gameStatus == 'finished'"}}
+            %a{:href => "/", class: "button col-xs-6"} 
               New Game
 
-            %a{:href => "", class: "button", "ng-click" => "game.showRating()", "ng-hide" => "game.ratingShows"} 
+            %a{:href => "", class: "button col-xs-6", "ng-click" => "game.showRating()", "ng-hide" => "game.ratingShows"} 
               Rating
 
-            %a{:href => "", class: "button", "ng-click" => "game.hideRating()", "ng-show" => "game.ratingShows"}
+            %a{:href => "", class: "button col-xs-6", "ng-click" => "game.hideRating()", "ng-show" => "game.ratingShows"}
               Back
 
         .col-md-5.options{{"ng-hide" => "game.ratingShows"}}
@@ -60,6 +60,6 @@
               %th Name
               %th Score
 
-            %tr{{"ng-repeat" => "game in games_list"}}
+            %tr{{"ng-repeat" => "game in game.gamesList"}}
               %td {{game.user.name}}
               %td {{game.score}}
