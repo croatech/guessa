@@ -50,7 +50,7 @@ namespace :import do
 
           puts "#{title} | Done!".light_blue
         else
-          puts "#{title} | Skip!".red
+          puts "#{title} | Skipped!".red
         end
 
         File.delete(absolute_local_path_to_image)
