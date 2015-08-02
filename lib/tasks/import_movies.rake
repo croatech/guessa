@@ -26,7 +26,7 @@ namespace :import do
 
         # only movies rating greater than 6, not equal 10(new) and year > 1970
         rating = item.search(".vote_average").text
-        if rating.to_f < 6 || rating.to_f == 10 || year.to_i < 1970 then next end
+        if rating.to_f < 6 || rating.to_f == (0 || 10) || year.to_i < 1970 then next end
 
         # get image
         movie_id = item.search(".info .title").first["href"].split("/")[2] # get movie ID from url
