@@ -7,7 +7,7 @@ module S3
     })
 
     directory = connection.directories.create(
-      :key    => "guessapp666", # globally unique name
+      :key    => "guessapp", # globally unique name
       :public => true
     )
 
