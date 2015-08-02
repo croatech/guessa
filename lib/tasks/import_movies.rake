@@ -45,14 +45,12 @@ namespace :import do
 
         File.delete(absolute_local_path_to_image)
 
-        if Movie.create(title: title, year: year, image_file_name: directory.key + "/" + movie_image_name,
+        if !Movie.find_by_title(title) && Movie.create(title: title, year: year, image_file_name: directory.key + "/" + movie_image_name,
                         image_content_type: "image/jpeg")
           puts "#{title} | Done!".light_blue
         else
-          puts "#{title} | Fail!".red
+          puts "#{title} | Skip!".red
         end
-
-        sleep(3)
       end
     end
   end
