@@ -19,10 +19,13 @@ namespace :import do
 
       page.search(".card").each do |item|
         title = item.search(".info .title").text
+
+        # no future year
         year = item.search(".release_date").text[/[0-9]+/]
-        rating = item.search(".vote_average").text
+        if year.to_f > DateTime.now.year then next end
 
         # only movies rating greater than 6 and year > 1970
+        rating = item.search(".vote_average").text
         if rating.to_f < 6 || year.to_i < 1970 then next end
 
         # get image
@@ -41,16 +44,16 @@ namespace :import do
           next
         end
 
-        S3.image_upload(directory, movie_image_name, absolute_local_path_to_image)
-
-        File.delete(absolute_local_path_to_image)
-
         if !Movie.find_by_title(title) && Movie.create(title: title, year: year, image_file_name: directory.key + "/" + movie_image_name,
                         image_content_type: "image/jpeg")
+          S3.image_upload(directory, movie_image_name, absolute_local_path_to_image)
+          
           puts "#{title} | Done!".light_blue
         else
           puts "#{title} | Skip!".red
         end
+
+        File.delete(absolute_local_path_to_image)
       end
     end
   end
