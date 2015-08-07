@@ -1,16 +1,16 @@
 .row.game.container{{"ng-controller" => "GameController as game"}}
 
   .start-block{{"ng-show" => "game.gameStatus == 'ready'"}}
-    %h1.text-center= "Hello, #{@current_user.name}."
+    %h1.text-center= "#{t(:hello)}, #{@current_user.name}."
 
     .game-actions.center
       .button{"ng-click" => "game.startGame()"}
-        %p.btnText Ready?
+        %p.btnText= t(:ready_button)
         .btnTwo
-          %p.btnText2 Go!
+          %p.btnText2= t(:go_button)
 
       .button{"ng-controller"=> "UserController as user", "ng-click" => "user.sessionDestroy()"}
-        %p.btnText Logout
+        %p.btnText= t(:logout_button)
         .btnTwo
           %p.btnText2 X
 
@@ -21,17 +21,17 @@
           %img.center{:src => "{{game.imageHostingUrl}}/{{game.secret.image_file_name}}"}/
           %p.right-answer.text-center{{"ng-show" => "game.gameStatus == 'finished'"}}
             {{game.secretMovieTitle}}
-          %h2.text-center Your score: {{game.score}}
+          %h2.text-center= "#{t(:score_header)}: {{game.score}}"
 
           .row.finished-actions.center{{"ng-show" => "game.gameStatus == 'finished'"}}
             %a{:href => "/", class: "button col-xs-6"} 
-              New Game
+              = t(:new_game_button)
 
             %a{:href => "", class: "button col-xs-6", "ng-click" => "game.showRating()", "ng-hide" => "game.ratingShows"} 
-              Rating
+              = t(:raing_button)
 
             %a{:href => "", class: "button col-xs-6", "ng-click" => "game.hideRating()", "ng-show" => "game.ratingShows"}
-              Back
+              = t(:back_button)
 
         .col-md-5.options{{"ng-hide" => "game.ratingShows"}}
           %ul.center{{"ng-repeat" => "movie in game.movies"}}
@@ -46,7 +46,7 @@
 
             %li{{"ng-show" => "game.secondHelpOption == true"}}
               %a{:href => "", class: "button first", "ng-click" => "game.getSkipQuestion()"}
-                Skip
+                = t(:skip_button)
 
             %li{{"ng-show" => "game.thirdHelpOption == true"}}
               %a{:href => "", class: "button first", "ng-click" => "game.getMistery()"}
@@ -54,11 +54,11 @@
 
         .col-md-5.rating{{"ng-show" => "game.ratingShows"}}
           %table.center
-            %caption Rating
+            %caption= t(:rating_caption)
 
             %tr
-              %th Name
-              %th Score
+              %th= t(:rating_name)
+              %th= t(:rating_score)
 
             %tr{{"ng-repeat" => "game in game.gamesList"}}
               %td {{game.user.name}}

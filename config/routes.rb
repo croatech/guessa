@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
   #mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  
   root 'home#index'
+
+  get '/:locale' => 'home#index'
 
   post 'login' => 'home#login'
 
-  resources :games, except: [:destroy, :edit] do
-    get 'start', on: :collection
+  scope "(:locale)", locale: /en|ru/ do
+    resources :games, except: [:destroy, :edit] do
+      get 'start', on: :collection
+    end
   end
 
   resources :users, only: :index do

@@ -1,0 +1,19 @@
+ru:
+  placeholder_title: "Имя"
+  submit_title: "Войти"
+
+  hello: "Привет"
+
+  ready_button: "Готовы?"
+  go_button: "Поехали!"
+  logout_button: "Выйти"
+  skip_button: "Пропустить"
+  new_game_button: "Новая игра"
+  rating_button: "Рейтинг"
+  back_button: "Назад"
+
+  rating_caption: "Рейтинг"
+  rating_name: "Имя"
+  rating_score: "Счет"
+
+  score_header: "Ваш счет"
