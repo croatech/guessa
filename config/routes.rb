@@ -1,16 +1,17 @@
 Rails.application.routes.draw do
   #mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  root 'home#index'
 
-  get '/:locale' => 'home#index'
+  scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
+    root 'home#index'
 
-  post 'login' => 'home#login'
-
-  scope "(:locale)", locale: /en|ru/ do
     resources :games, except: [:destroy, :edit] do
       get 'start', on: :collection
     end
   end
+
+  get '/language/:name' => 'home#switch_language', as: "switch_language"
+
+  post 'login' => 'home#login'
 
   resources :users, only: :index do
     get :session_destroy, on: :collection, as: "session_destroy"

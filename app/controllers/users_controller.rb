@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
 
   def session_destroy
-    session.clear
-    redirect_to root_path
+    session.delete(:session_key)
+    redirect_to (session[:locale].present? ? root_path(:locale => session[:locale]) : root_path)
   end
 end

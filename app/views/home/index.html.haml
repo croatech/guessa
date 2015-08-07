@@ -1,5 +1,12 @@
 .row.home
-  = form_tag(login_path) do
-    .field.center
-      = text_field_tag :name, nil, { placeholder: "#{t(:placeholder_title)}", required: true }
-      = submit_tag "#{t(:submit_title)}"
+  .lang-switcher
+    = session[:locale]
+
+    = link_to image_tag("flags/gb.png"), switch_language_path(name: "en")
+    = link_to image_tag("flags/ru.png"), switch_language_path(name: "ru")
+
+  .form
+    = form_tag(login_path) do
+      .field.center
+        = text_field_tag :name, nil, { placeholder: "#{t(:placeholder_title)}", required: true }
+        = submit_tag "#{t(:submit_title)}"

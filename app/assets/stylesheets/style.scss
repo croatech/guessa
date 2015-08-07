@@ -21,7 +21,11 @@
 }
 
 .home {
-  form {
+  .lang-switcher {
+    float: right;
+  }
+
+  .form {
     .field {
       max-width: 325px;
     }
@@ -32,10 +36,12 @@
   .start-block {
     .game-actions {
       max-width: 405px;
+      
       .button {
         max-width: 200px;
       }
     }
+
     .button {
       max-width: 250px;
       margin-top: 50px;
