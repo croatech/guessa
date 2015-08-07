@@ -5,6 +5,8 @@ class HomeController < ApplicationController
     else
       session.delete(:session_key)
     end
+
+    @locale = session[:locale].present? ? session[:locale] : I18n.default_locale
   end
 
   def login

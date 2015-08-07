@@ -1,7 +1,6 @@
 .row.home
   .lang-switcher
-    = session[:locale]
-
+    = @locale
     = link_to image_tag("flags/en.png"), switch_language_path(name: "en")
     = link_to image_tag("flags/ru.png"), switch_language_path(name: "ru")
 
