@@ -36,9 +36,10 @@
 
         .col-md-5.options{{"ng-hide" => "game.ratingShows"}}
           // ========= TIMER ========= //
-          %h3.timer
-            %timer{:countdown => "30", :interval => "1000"}
+          %h3.timer{{"ng-if" => "game.gameStatus == 'processing'"}}
+            %timer{:countdown => "31", :interval => "1000"}
               {{countdown}} sec
+
 
           // ========= MOVIES OPTIONS ========= //
           %ul.center

@@ -1,6 +1,6 @@
 app.controller('GameController', GameController)
 
-function GameController(Restangular, gameService, $scope) {
+function GameController(Restangular, gameService, $scope, $timeout) {
   var vm = this;
 
   // init
@@ -82,7 +82,7 @@ function GameController(Restangular, gameService, $scope) {
     $currentGame.put();
   }
 
-  vm.getMistery = function() {
+  var getMistery = function() {
     vm.score = 0;
     vm.gameStatus = "finished";
     vm.showRating();
@@ -95,7 +95,5 @@ function GameController(Restangular, gameService, $scope) {
     vm.thirdHelpOption = false;
   }
 
-  $scope.$on('timer-add-cd-seconds', function (event, data) {
-    console.log(data); // 'Some data'
-  });
+  $timeout(getMistery, 31000, true);
 }
