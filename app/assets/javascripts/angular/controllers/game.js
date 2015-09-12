@@ -1,6 +1,6 @@
 app.controller('GameController', GameController)
 
-function GameController(Restangular, gameService) {
+function GameController(Restangular, gameService, $scope) {
   var vm = this;
 
   // init
@@ -67,9 +67,9 @@ function GameController(Restangular, gameService) {
     })
 
     vm.movies.splice($indexSecretMovie, 1); // delete secret movie from an array
-    vm.movies.unshift(vm.secret);       // put secret movie to an array on first place  
-    vm.movies = vm.movies.slice(0, 2);  // deletes 2 last options(secret movie is first)
-    vm.movies = shuffle(vm.movies);     // shuffle
+    vm.movies.unshift(vm.secret);           // put secret movie to an array on first place  
+    vm.movies = vm.movies.slice(0, 2);      // deletes 2 last options(secret movie is first)
+    vm.movies = shuffle(vm.movies);         // shuffle
   }
 
   vm.getSkipQuestion = function() {
@@ -89,4 +89,13 @@ function GameController(Restangular, gameService) {
     vm.imageHostingUrl = "http://www.tnca.org";
     vm.secret.image_file_name = "wp-content/uploads/2012/02/helloloser.jpg";
   }
+
+  vm.add20Seconds = function() {
+    $scope.$broadcast('timer-add-cd-seconds', 20);
+    vm.thirdHelpOption = false;
+  }
+
+  $scope.$on('timer-add-cd-seconds', function (event, data) {
+    console.log(data); // 'Some data'
+  });
 }

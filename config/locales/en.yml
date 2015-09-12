@@ -8,6 +8,7 @@ en:
   go_button: "Go!"
   logout_button: "Logout"
   skip_button: "Skip"
+  addseconds_button: "+20 sec."
   new_game_button: "New Game"
   rating_button: "Rating"
   back_button: "Back"

@@ -8,6 +8,7 @@ ru:
   go_button: "Поехали!"
   logout_button: "Выйти"
   skip_button: "Пропустить"
+  addseconds_button: "+20 сек."
   new_game_button: "Новая игра"
   rating_button: "Рейтинг"
   back_button: "Назад"

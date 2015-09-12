@@ -1,4 +1,4 @@
-var app = angular.module('Guessa', ['restangular'])
+var app = angular.module('Guessa', ['restangular', 'timer'])
   .config(function (RestangularProvider) {
     
    RestangularProvider.setRequestSuffix('.json');

@@ -23,6 +23,7 @@
             {{game.secretMovieTitle}}
           %h2.text-center= "#{t(:score_header)}: {{game.score}}"
 
+          // ========= ACTION BUTTONS ========= //
           .row.finished-actions.center{{"ng-show" => "game.gameStatus == 'finished'"}}
             %a{:href => "/", class: "button col-xs-6"} 
               = t(:new_game_button)
@@ -34,11 +35,18 @@
               = t(:back_button)
 
         .col-md-5.options{{"ng-hide" => "game.ratingShows"}}
-          %ul.center{{"ng-repeat" => "movie in game.movies"}}
-            %li
+          // ========= TIMER ========= //
+          %h3.timer
+            %timer{:countdown => "30", :interval => "1000"}
+              {{countdown}} sec
+
+          // ========= MOVIES OPTIONS ========= //
+          %ul.center
+            %li{{"ng-repeat" => "movie in game.movies"}}
               %a#option{:href => "", class: "button center", "ng-class" => "{ 'right': $index == game.rightAnswer, 'wrong': $index == game.wrongAnswer }", "ng-click" => "game.checkAnswer(movie.id, $index)"}
                 {{movie.title}}
 
+          // ========= HELP OPTIONS ========= //
           %ul.help-options{{"ng-hide" => "game.gameStatus == 'finished'"}}
             %li{{"ng-show" => "game.firstHelpOption == true"}}
               %a{:href => "", class: "button first", "ng-click" => "game.getFiftyFifty()"}
@@ -49,9 +57,10 @@
                 = t(:skip_button)
 
             %li{{"ng-show" => "game.thirdHelpOption == true"}}
-              %a{:href => "", class: "button first", "ng-click" => "game.getMistery()"}
-                %img{:src => "http://images.clipartpanda.com/red-question-mark-clipart-bubble-question-mark-hi.png", :alt => "", width: 15}/
+              %a{:href => "", class: "button first", "ng-click" => "game.add20Seconds()"}
+                = t(:addseconds_button)
 
+        // ========= RATING ========= //
         .col-md-5.rating{{"ng-show" => "game.ratingShows"}}
           %table.center
             %caption= t(:rating_caption)
