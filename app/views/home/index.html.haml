@@ -1,11 +1,11 @@
 .row.home
-  .lang-switcher
+  .form.col-md-4.col-md-offset-4.col-sm-8.col-xs-8
+    = form_tag(login_path) do
+      .field
+        = text_field_tag :name, nil, { placeholder: "#{t(:placeholder_title)}", required: true }
+        = submit_tag "#{t(:submit_title)}"
+
+  .lang-switcher.col-md-2.col-md-offset-2.col-sm-4.col-xs-4
     = @locale
     = link_to image_tag("flags/en.png"), switch_language_path(name: "en")
     = link_to image_tag("flags/ru.png"), switch_language_path(name: "ru")
-
-  .form
-    = form_tag(login_path) do
-      .field.center
-        = text_field_tag :name, nil, { placeholder: "#{t(:placeholder_title)}", required: true }
-        = submit_tag "#{t(:submit_title)}"

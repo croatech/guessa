@@ -3,13 +3,14 @@
   .start-block{{"ng-show" => "game.gameStatus == 'ready'"}}
     %h1.text-center= "#{t(:hello)}, #{@current_user.name}."
 
-    .game-actions.center
-      .button{"ng-click" => "game.startGame()"}
+    // ========= GAME ACTION BUTTONS ========= //
+    .row.col-md-6.col-md-offset-3.game-actions
+      .col-xs-6.col-xs-offset-6.button{"ng-click" => "game.startGame()"}
         %p.btnText= t(:ready_button)
         .btnTwo
           %p.btnText2= t(:go_button)
 
-      .button{"ng-controller"=> "UserController as user", "ng-click" => "user.sessionDestroy()"}
+      .col-xs-6.col-xs-offset-6.button{"ng-controller"=> "UserController as user", "ng-click" => "user.sessionDestroy()"}
         %p.btnText= t(:logout_button)
         .btnTwo
           %p.btnText2 X
@@ -17,7 +18,7 @@
   .row.game-block{{"ng-show" => "game.gameStatus != 'ready'"}}
     .movies{{"ng-init" => "game.getMovies()"}}
       .row.movie
-        .col-md-7.block
+        .col-sm-6.block
           %img.center{:src => "{{game.imageHostingUrl}}/{{game.secret.image_file_name}}"}/
           %p.right-answer.text-center{{"ng-show" => "game.gameStatus == 'finished'"}}
             {{game.secretMovieTitle}}
@@ -34,7 +35,7 @@
             %a{:href => "", class: "button col-xs-6", "ng-click" => "game.hideRating()", "ng-show" => "game.ratingShows"}
               = t(:back_button)
 
-        .col-md-5.options{{"ng-hide" => "game.ratingShows"}}
+        .col-sm-6.options{{"ng-hide" => "game.ratingShows"}}
           // ========= TIMER ========= //
           %h3.timer{{"ng-if" => "game.gameStatus == 'processing'"}}
             %timer{:countdown => "31", :interval => "1000"}
@@ -42,23 +43,23 @@
 
 
           // ========= MOVIES OPTIONS ========= //
-          %ul.center
+          %ul.row
             %li{{"ng-repeat" => "movie in game.movies"}}
-              %a#option{:href => "", class: "button center", "ng-class" => "{ 'right': $index == game.rightAnswer, 'wrong': $index == game.wrongAnswer }", "ng-click" => "game.checkAnswer(movie.id, $index)"}
+              %a#option{:href => "", class: "button col-xs-12", "ng-class" => "{ 'right': $index == game.rightAnswer, 'wrong': $index == game.wrongAnswer }", "ng-click" => "game.checkAnswer(movie.id, $index)"}
                 {{movie.title}}
 
           // ========= HELP OPTIONS ========= //
-          %ul.help-options{{"ng-hide" => "game.gameStatus == 'finished'"}}
+          %ul.row.help-options{{"ng-hide" => "game.gameStatus == 'finished'"}}
             %li{{"ng-show" => "game.firstHelpOption == true"}}
-              %a{:href => "", class: "button first", "ng-click" => "game.getFiftyFifty()"}
+              %a{:href => "", class: "button col-xs-4", "ng-click" => "game.getFiftyFifty()"}
                 50/50
 
             %li{{"ng-show" => "game.secondHelpOption == true"}}
-              %a{:href => "", class: "button first", "ng-click" => "game.getSkipQuestion()"}
+              %a{:href => "", class: "button col-xs-4", "ng-click" => "game.getSkipQuestion()"}
                 = t(:skip_button)
 
             %li{{"ng-show" => "game.thirdHelpOption == true"}}
-              %a{:href => "", class: "button first", "ng-click" => "game.add20Seconds()"}
+              %a{:href => "", class: "button col-xs-4", "ng-click" => "game.add20Seconds()"}
                 = t(:addseconds_button)
 
         // ========= RATING ========= //

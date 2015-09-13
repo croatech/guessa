@@ -1,5 +1,5 @@
 .container {
-  margin-top: 10%;
+  margin-top: 100px;
 }
 
 .button {
@@ -21,28 +21,8 @@
   text-align: center;
 }
 
-.home {
-  .lang-switcher {
-    float: right;
-  }
-
-  .form {
-    .field {
-      max-width: 325px;
-    }
-  }
-}
-
 .game {
   .start-block {
-    .game-actions {
-      max-width: 405px;
-      
-      .button {
-        max-width: 200px;
-      }
-    }
-
     .button {
       max-width: 250px;
       margin-top: 50px;
@@ -57,21 +37,28 @@
     }
 
     .movie {
-      img {
-        max-width: 500px;
+      #option {
+        margin-bottom: -2px
       }
 
-      .block {
-        min-width: 500px;
+      .timer {
+        max-width: 100px;
+        background-color: #fff;
+      }
+
+      img {
+        width: 100%;
+      }
+
+      .options {
+        margin-top: -86px;
       }
 
       .help-options {
         margin-top: 60px;
-        
-        .button {
-          width: 33%;
-          display: inline-block;
-          float: left;
+
+        li {
+          margin: 0;
         }
       }
     }

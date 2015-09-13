@@ -12,9 +12,14 @@ function GameController(Restangular, gameService, $scope, $timeout) {
   vm.secondHelpOption = true;
   vm.thirdHelpOption = true;
 
+  var startTimeout = function() {
+    $timeout(getMistery, 31000, true);
+  }
+
   vm.startGame = function() {
     vm.score = 0;
     vm.gameStatus = "processing";
+    startTimeout();
 
     gameService.create().then(function(res) {
       $currentGame = res;
@@ -94,6 +99,4 @@ function GameController(Restangular, gameService, $scope, $timeout) {
     $scope.$broadcast('timer-add-cd-seconds', 20);
     vm.thirdHelpOption = false;
   }
-
-  $timeout(getMistery, 31000, true);
 }
