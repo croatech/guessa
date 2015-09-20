@@ -1,5 +1,7 @@
 module S3
-  def S3.set_directory
+  module_function
+
+  def set_directory
     connection = Fog::Storage.new({
       :provider                 => 'AWS',
       :aws_access_key_id        => ENV['S3_ACCESS_KEY_ID'],
@@ -14,7 +16,7 @@ module S3
     return directory
   end
 
-  def S3.image_upload(directory, movie_image_name, absolute_local_path_to_image)
+  def image_upload(directory, movie_image_name, absolute_local_path_to_image)
     file = directory.files.create(
       :key    => movie_image_name,
       :body   => File.open(absolute_local_path_to_image),
