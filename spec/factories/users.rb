@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :user do
-  	id 1
-  	name "Fry"
+    id 1
+    name "Fry"
   end
 end
