@@ -71,6 +71,7 @@ function GameController(Restangular, gameService) {
     vm.movies.unshift(vm.secret);           // put secret movie to an array on first place  
     vm.movies = vm.movies.slice(0, 2);      // deletes 2 last options(secret movie is first)
     vm.movies = shuffle(vm.movies);         // shuffle
+    removeBorder();
   }
 
   vm.getSkipQuestion = function() {
@@ -81,6 +82,7 @@ function GameController(Restangular, gameService) {
     // record update
     $currentGame.score = vm.score;
     $currentGame.put();
+    removeBorder();
   }
 
   vm.getMistery = function() {
