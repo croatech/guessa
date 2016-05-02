@@ -2,7 +2,8 @@
 
 #App for guessing movies
 
-http://guessa.herokuapp.com/
+[Demo](http://guessa.herokuapp.com/)
+[Gif](http://i.imgur.com/2mtF5Ek.gifv)
 
 ##S3
 
