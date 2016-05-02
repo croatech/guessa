@@ -36,12 +36,6 @@
               = t(:back_button)
 
         .col-sm-6.options{{"ng-hide" => "game.ratingShows"}}
-          // ========= TIMER ========= //
-          %h3.timer{{"ng-if" => "game.gameStatus == 'processing'"}}
-            %timer{:countdown => "31", :interval => "1000"}
-              {{countdown}} sec
-
-
           // ========= MOVIES OPTIONS ========= //
           %ul.row
             %li{{"ng-repeat" => "movie in game.movies"}}
@@ -59,8 +53,8 @@
                 = t(:skip_button)
 
             %li{{"ng-show" => "game.thirdHelpOption == true"}}
-              %a{:href => "", class: "button col-xs-4", "ng-click" => "game.add20Seconds()"}
-                = t(:addseconds_button)
+              %a{:href => "", class: "button mistery first", "ng-click" => "game.getMistery()"}
+                %img{:src => "http://images.clipartpanda.com/red-question-mark-clipart-bubble-question-mark-hi.png", :alt => "", width: 15}/
 
         // ========= RATING ========= //
         .col-md-5.rating{{"ng-show" => "game.ratingShows"}}

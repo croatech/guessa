@@ -1,6 +1,6 @@
 app.controller('GameController', GameController)
 
-function GameController(Restangular, gameService, $scope, $timeout) {
+function GameController(Restangular, gameService) {
   var vm = this;
 
   // init
@@ -11,10 +11,6 @@ function GameController(Restangular, gameService, $scope, $timeout) {
   vm.firstHelpOption = true;
   vm.secondHelpOption = true;
   vm.thirdHelpOption = true;
-
-  var startTimeout = function() {
-    $timeout(getMistery, 31000, true);
-  }
 
   vm.startGame = function() {
     vm.score = 0;
@@ -87,16 +83,11 @@ function GameController(Restangular, gameService, $scope, $timeout) {
     $currentGame.put();
   }
 
-  var getMistery = function() {
+  vm.getMistery = function() {
     vm.score = 0;
     vm.gameStatus = "finished";
     vm.showRating();
     vm.imageHostingUrl = "http://www.tnca.org";
     vm.secret.image_file_name = "wp-content/uploads/2012/02/helloloser.jpg";
-  }
-
-  vm.add20Seconds = function() {
-    $scope.$broadcast('timer-add-cd-seconds', 20);
-    vm.thirdHelpOption = false;
   }
 }
